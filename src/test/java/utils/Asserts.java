@@ -14,41 +14,46 @@ public class Asserts {
 
     public static boolean verifyElementIsClickable(WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.elementToBeClickable(element));
+            log.debug("Verificando se elemento é clicável: {}", element);
+
+            new WebDriverWait(driver, Duration.ofSeconds(10))
+                    .until(ExpectedConditions.elementToBeClickable(element));
 
             boolean isClickable = element.isDisplayed() && element.isEnabled();
 
-            log.info("Element is clickable: " + isClickable);
+            if (isClickable) {
+                log.info("Elemento está clicável: {}", element);
+            } else {
+                log.error("Elemento não está clicável: {}", element);
+            }
+
             return isClickable;
         } catch (Exception e) {
-            log.error("Element is not clickable: " + e.getMessage());
+            log.error("Erro ao verificar se elemento é clicável: {}. Detalhes: {}", element, e.getMessage(), e);
             return false;
         }
     }
 
     public static boolean verifyElementIsVisible(WebElement element) {
-        int maxAttempts = 5; // número máximo de tentativas
-        int attempt = 0;
+        int maxAttempts = 3;
         boolean isVisible = false;
 
-        while (attempt < maxAttempts && !isVisible) {
+        for (int attempt = 1; attempt <= maxAttempts && !isVisible; attempt++) {
             try {
-                attempt++;
-                log.info("Tentativa " + attempt + " de verificar visibilidade...");
+                log.debug("Tentativa {} de verificar visibilidade do elemento: {}", attempt, element);
 
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-                wait.until(ExpectedConditions.visibilityOf(element));
+                new WebDriverWait(driver, Duration.ofSeconds(5))
+                        .until(ExpectedConditions.visibilityOf(element));
 
                 if (element.isDisplayed()) {
                     isVisible = true;
-                    log.info("Elemento visível na tentativa " + attempt);
+                    log.info("Elemento visível na tentativa {}", attempt);
                 }
             } catch (Exception e) {
-                log.error("Tentativa " + attempt + " falhou: elemento não visível ainda. Motivo: " + e.getMessage());
+                log.error("Tentativa {} falhou: elemento não visível. Motivo: {}", attempt, e.getMessage());
                 if (attempt < maxAttempts) {
                     try {
-                        Thread.sleep(2000); // espera 2 segundos antes da próxima tentativa
+                        Thread.sleep(1000); // espera curta antes da próxima tentativa
                     } catch (InterruptedException ie) {
                         Thread.currentThread().interrupt();
                     }
@@ -57,9 +62,8 @@ public class Asserts {
         }
 
         if (!isVisible) {
-            log.error("Elemento não ficou visível após " + maxAttempts + " tentativas.");
+            log.error("Elemento não ficou visível após {} tentativas.", maxAttempts);
         }
-
         return isVisible;
     }
 }
