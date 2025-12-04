@@ -1,5 +1,6 @@
 package utils;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,6 +9,7 @@ import java.time.Duration;
 
 import static core.driver.DriverFactory.driver;
 
+@Log4j2
 public class Actions {
 
     public static void click(WebElement element) {
@@ -21,10 +23,10 @@ public class Actions {
             // Tenta clicar
             element.click();
 
-            System.out.println("[ElementActions] Click action performed on element: " + element);
+            log.info("Click action performed on element: " + element);
 
         } catch (Exception e) {
-            System.out.println("[ElementActions] Click action failed on element: " + element + " - " + e.getMessage());
+            log.error("Click action failed on element: " + element + " - " + e.getMessage());
             throw e;
         }
     }
@@ -43,10 +45,10 @@ public class Actions {
             // Digita o valor
             element.sendKeys(value);
 
-            System.out.println("[ElementActions] Text input completed on element: " + element);
+            log.info("Text input completed on element: " + element);
 
         } catch (Exception e) {
-            System.out.println("[ElementActions] Text input failed on element: " + element + " - " + e.getMessage());
+            log.error("Text input failed on element: " + element + " - " + e.getMessage());
             throw e;
         }
     }

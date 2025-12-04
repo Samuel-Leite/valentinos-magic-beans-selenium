@@ -1,5 +1,6 @@
 package utils;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,6 +9,7 @@ import java.time.Duration;
 
 import static core.driver.DriverFactory.driver;
 
+@Log4j2
 public class Asserts {
 
     public static boolean verifyElementIsClickable(WebElement element) {
@@ -17,10 +19,10 @@ public class Asserts {
 
             boolean isClickable = element.isDisplayed() && element.isEnabled();
 
-            System.out.println("[ElementActions] Element is clickable: " + isClickable);
+            log.info("Element is clickable: " + isClickable);
             return isClickable;
         } catch (Exception e) {
-            System.out.println("[ElementActions] Element is not clickable: " + e.getMessage());
+            log.error("Element is not clickable: " + e.getMessage());
             return false;
         }
     }
@@ -33,17 +35,17 @@ public class Asserts {
         while (attempt < maxAttempts && !isVisible) {
             try {
                 attempt++;
-                System.out.println("[ElementActions] Tentativa " + attempt + " de verificar visibilidade...");
+                log.info("Tentativa " + attempt + " de verificar visibilidade...");
 
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
                 wait.until(ExpectedConditions.visibilityOf(element));
 
                 if (element.isDisplayed()) {
                     isVisible = true;
-                    System.out.println("[ElementActions] Elemento visível na tentativa " + attempt);
+                    log.info("Elemento visível na tentativa " + attempt);
                 }
             } catch (Exception e) {
-                System.out.println("[ElementActions] Tentativa " + attempt + " falhou: elemento não visível ainda. Motivo: " + e.getMessage());
+                log.error("Tentativa " + attempt + " falhou: elemento não visível ainda. Motivo: " + e.getMessage());
                 if (attempt < maxAttempts) {
                     try {
                         Thread.sleep(2000); // espera 2 segundos antes da próxima tentativa
@@ -55,7 +57,7 @@ public class Asserts {
         }
 
         if (!isVisible) {
-            System.out.println("[ElementActions] Elemento não ficou visível após " + maxAttempts + " tentativas.");
+            log.error("Elemento não ficou visível após " + maxAttempts + " tentativas.");
         }
 
         return isVisible;

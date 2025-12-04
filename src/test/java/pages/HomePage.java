@@ -1,6 +1,7 @@
 package pages;
 
 import attributes.HomeAttributes;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ import org.testng.Assert;
 
 import java.time.Duration;
 
+@Log4j2
 public class HomePage extends HomeAttributes {
 
     private WebDriver driver;
@@ -27,9 +29,9 @@ public class HomePage extends HomeAttributes {
         ));
 
         // Log que encontrou o elemento
-        System.out.println("[CustomAsserts] Elemento encontrado: " + toast.getText());
+        log.info("Elemento encontrado: " + toast.getText());
 
         Assert.assertEquals(toast.getText(), "Login Successful",
-                "[CustomAsserts] Falha: esperado 'Login Successful' mas recebido '" + toast.getText() + "'");
+                "Falha: esperado 'Login Successful' mas recebido '" + toast.getText() + "'");
     }
 }

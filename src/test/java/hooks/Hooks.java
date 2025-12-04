@@ -3,18 +3,20 @@ package hooks;
 import core.driver.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class Hooks {
 
     @Before
     public void setUp() {
         DriverFactory.getDriver();
-        System.out.println("[Hooks] Navegador iniciado.");
+        log.info("Iniciando o teste");
     }
 
     @After
     public void tearDown() {
         DriverFactory.quitDriver();
-        System.out.println("[Hooks] Navegador fechado.");
+        log.info("Navegador fechado");
     }
 }
