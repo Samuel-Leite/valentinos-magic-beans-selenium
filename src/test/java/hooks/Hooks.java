@@ -10,7 +10,6 @@ public class Hooks {
 
     @Before
     public void setUp() {
-        DriverFactory.getDriver();
         log.info("Iniciando o teste");
     }
 

@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 
 public class LoginSteps {
 
-    LinkedHashMap<String, String> credenciais = DataYaml.getMapYamlValues("login", "usuario_valido");
+    LinkedHashMap<String, String> credenciais = DataYaml.getMapYamlValues("credencial", "usuario_valido");
 
     WebDriver driver = DriverFactory.getDriver();
     LoginPage loginPage = new LoginPage(driver);
