@@ -27,6 +27,5 @@ public class Runner extends AbstractTestNGCucumberTests {
     @Parameters({"environment"})
     public void setupEnv(String environment) {
         System.setProperty("env", environment);
-        System.out.println(">>> Ambiente configurado via TestNG: " + environment);
     }
 }
