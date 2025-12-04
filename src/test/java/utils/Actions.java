@@ -1,5 +1,6 @@
 package utils;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,45 +9,26 @@ import java.time.Duration;
 
 import static core.driver.DriverFactory.driver;
 
+@Log4j2
 public class Actions {
 
     public static void click(WebElement element) {
         try {
-            // Cria o WebDriverWait local (10 segundos)
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-            // Espera até que o elemento esteja clicável
-            wait.until(ExpectedConditions.elementToBeClickable(element));
-
-            // Tenta clicar
             element.click();
-
-            System.out.println("[ElementActions] Click action performed on element: " + element);
-
+            log.debug("Clique realizado com sucesso no elemento: {}", element);
         } catch (Exception e) {
-            System.out.println("[ElementActions] Click action failed on element: " + element + " - " + e.getMessage());
+            log.error("Falha ao clicar no elemento: {}. Detalhes: {}", element, e.getMessage(), e);
             throw e;
         }
     }
 
     public static void sendKeys(WebElement element, String value) {
         try {
-            // Cria o WebDriverWait local (10 segundos)
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-            // Espera até que o elemento esteja visível
-            wait.until(ExpectedConditions.visibilityOf(element));
-
-            // Limpa o campo antes de digitar
             element.clear();
-
-            // Digita o valor
             element.sendKeys(value);
-
-            System.out.println("[ElementActions] Text input completed on element: " + element);
-
+            log.debug("Valor preenchido com sucesso no elemento: {}", element);
         } catch (Exception e) {
-            System.out.println("[ElementActions] Text input failed on element: " + element + " - " + e.getMessage());
+            log.error("Falha ao preencher o elemento: {}. Detalhes: {}", element, e.getMessage(), e);
             throw e;
         }
     }

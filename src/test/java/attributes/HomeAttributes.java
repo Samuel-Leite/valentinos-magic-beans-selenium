@@ -7,4 +7,8 @@ public class HomeAttributes {
 
     @FindBy(css = "div.text-sm.font-semibold")
     public WebElement toastLoginSuccess;
+    @FindBy(css = "button:has(svg.lucide-user)")
+    public WebElement btnUserMenu;
+    @FindBy(css = "div[role='menuitem'] span")
+    public WebElement btnLogOut;
 }
