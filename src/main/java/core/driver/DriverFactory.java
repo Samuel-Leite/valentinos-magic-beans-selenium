@@ -11,7 +11,6 @@ public class DriverFactory {
     // Retorna o driver já inicializado ou cria um novo
     public static WebDriver getDriver() {
         if (driver == null) {
-            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             driver.manage().window().maximize();
         }
