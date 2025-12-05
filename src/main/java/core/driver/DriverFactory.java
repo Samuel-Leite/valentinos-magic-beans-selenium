@@ -6,16 +6,32 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+/**
+ * Classe responsável por gerenciar a instância única do WebDriver.
+ *
+ * Utiliza o padrão Singleton para garantir que apenas uma instância do driver
+ * seja criada durante a execução dos testes.
+ *
+ * O navegador é definido pelo parâmetro de sistema "browser"
+ * (chrome | firefox | edge).
+ */
 @Log4j2
 public class DriverFactory {
 
+    // Instância única do WebDriver
     private static WebDriver driver;
 
+    /**
+     * Retorna a instância atual do WebDriver.
+     * Caso ainda não exista, cria uma nova instância com base no parâmetro "browser".
+     *
+     * @return WebDriver instanciado
+     */
     public static WebDriver getDriver() {
         if (driver == null) {
             String browser = System.getProperty("browser");
             if (browser == null || browser.isEmpty()) {
-                throw new IllegalStateException("Parâmetro 'browser' não informado. Use chrome|firefox|edge");
+                throw new IllegalStateException("Parâmetro 'browser' não informado. Use chrome|firefox");
             }
 
             switch (browser.toLowerCase()) {
@@ -36,6 +52,10 @@ public class DriverFactory {
         return driver;
     }
 
+    /**
+     * Finaliza a instância atual do WebDriver.
+     * Fecha o navegador e limpa a referência para permitir nova criação futura.
+     */
     public static void quitDriver() {
         if (driver != null) {
             log.info("Encerrando navegador...");
