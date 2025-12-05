@@ -1,8 +1,9 @@
 
 # language: pt
 # charset: UTF-8
-Funcionalidade: Login
-  Eu como cliente gostaria de acessar o sistema via login somente com credenciais validas
+Funcionalidade: Efetuar login na plataforma
+  Eu como cliente gostaria de acessar o sistema
+  E validar o login com as credenciais
 
   @wip
   Cenario: Executar login com credenciais validas

@@ -1,10 +1,8 @@
 package steps;
 
 import core.data.DataYaml;
-import core.driver.DriverFactory;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Quando;
-import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 
 import java.util.LinkedHashMap;
@@ -12,9 +10,7 @@ import java.util.LinkedHashMap;
 public class LoginSteps {
 
     LinkedHashMap<String, String> credenciais = DataYaml.getMapYamlValues("credencial", "usuario_valido");
-
-    WebDriver driver = DriverFactory.getDriver();
-    LoginPage loginPage = new LoginPage(driver);
+    LoginPage loginPage = new LoginPage();
 
     @Dado("^que acesse a pagina de login$")
     public void queAcesseAPaginaDeLogin() {

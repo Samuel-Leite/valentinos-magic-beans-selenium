@@ -1,28 +1,30 @@
 package pages;
 
 import attributes.HomeAttributes;
-import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 
-import static utils.Actions.click;
-import static utils.Asserts.verifyElementIsClickable;
-import static utils.Asserts.verifyElementIsVisible;
+import static utils.Actions.*;
+import static utils.Asserts.*;
 
-@Log4j2
+/**
+ * Page Object da página inicial (Home).
+ *
+ * Contém ações e validações específicas da Home,
+ * utilizando os elementos definidos em {@link HomeAttributes}.
+ */
 public class HomePage extends HomeAttributes {
 
-    private WebDriver driver;
-
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
-
+    /**
+     * Valida se o login foi realizado com sucesso.
+     *
+     */
     public void validarLoginSucesso() {
         verifyElementIsVisible(toastLoginSuccess);
     }
 
+    /**
+     * Realiza o logout do usuário.
+     *
+     */
     public void realizarLogout() {
         verifyElementIsClickable(btnUserMenu);
         click(btnUserMenu);

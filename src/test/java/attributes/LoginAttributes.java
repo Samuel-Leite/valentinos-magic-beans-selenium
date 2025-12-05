@@ -1,9 +1,10 @@
 package attributes;
 
+import core.base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginAttributes {
+public class LoginAttributes extends BasePage {
 
     @FindBy(css = "[data-test-id='header-login-button-desktop']")
     public WebElement btnLogin;
