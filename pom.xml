@@ -25,72 +25,92 @@
     </properties>
 
     <dependencies>
+        <!-- Cucumber Java: Permite escrever steps em Java para os cenários BDD -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
 
+        <!-- Selenium Java: Biblioteca principal para automação de browsers -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
+
+        <!-- Commons IO: Utilitários para manipulação de arquivos e streams -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons.version}</version>
         </dependency>
+
+        <!-- Cucumber TestNG: Integração do Cucumber com o framework TestNG -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
             <version>${cucumber.testng}</version>
         </dependency>
+
+        <!-- Cucumber PicoContainer: Suporte a injeção de dependências nos steps -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
+
+        <!-- TestNG: Framework de testes usado para rodar os cenários -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng.version}</version> <!-- ou a versão mais recente -->
+            <version>${testng.version}</version>
         </dependency>
+
+        <!-- WebDriverManager: Gerencia automaticamente os drivers dos navegadores -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
         </dependency>
+
+        <!-- SLF4J Simple: Implementação simples de logging (usada em testes) -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- Lombok - Otimizacao de classes modelos -->
+
+        <!-- Lombok: Gera automaticamente getters, setters, construtores e logs -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
 
-        <!-- Log4j - Resposavel pelo Log do projeto -->
+        <!-- Log4j API: API para logging estruturado -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>${log4j.version}</version>
         </dependency>
+
+        <!-- Log4j Core: Implementação principal do Log4j -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
-        <!--Jackson para leitura de dados de arquivo yaml file -->
+
+        <!-- Jackson Dataformat YAML: Suporte para leitura de arquivos YAML -->
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
             <version>${fasterxml.version}</version>
         </dependency>
+
+        <!-- Jackson Datatype JSR310: Suporte para tipos de data/hora (Java 8+) -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
