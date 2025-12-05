@@ -4,7 +4,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 /**
  * Classe responsável por gerenciar a instância única do WebDriver.
@@ -30,23 +32,33 @@ public class DriverFactory {
     public static WebDriver getDriver() {
         if (driver == null) {
             String browser = System.getProperty("browser");
-            if (browser == null || browser.isEmpty()) {
-                throw new IllegalStateException("Parâmetro 'browser' não informado. Use chrome|firefox");
-            }
+            boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
+
+            log.info("Inicializando navegador={} | headless={}", browser, headless);
 
             switch (browser.toLowerCase()) {
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    log.info("Inicializando navegador: Firefox");
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    if (headless) {
+                        firefoxOptions.addArguments("--headless");
+                    }
+                    firefoxOptions.addArguments("--start-maximized");
+                    driver = new FirefoxDriver(firefoxOptions);
                     break;
+
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    log.info("Inicializando navegador: Chrome");
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    if (headless) {
+                        chromeOptions.addArguments("--headless=new"); // headless moderno
+                    }
+                    chromeOptions.addArguments("--start-maximized");
+                    driver = new ChromeDriver(chromeOptions);
                     break;
+
                 default:
-                    throw new IllegalArgumentException("Navegador informado está inválido: " + browser);
+                    throw new IllegalArgumentException("Navegador inválido: " + browser);
             }
         }
         return driver;
