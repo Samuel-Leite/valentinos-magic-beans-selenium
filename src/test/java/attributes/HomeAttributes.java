@@ -1,9 +1,10 @@
 package attributes;
 
+import core.base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class HomeAttributes {
+public class HomeAttributes extends BasePage {
 
     @FindBy(css = "div.text-sm.font-semibold")
     public WebElement toastLoginSuccess;

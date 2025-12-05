@@ -2,21 +2,33 @@ package core.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 
 public class DriverFactory {
 
-    public static WebDriver driver;
+    private static WebDriver driver;
 
-    // Retorna o driver já inicializado ou cria um novo
     public static WebDriver getDriver() {
         if (driver == null) {
-            driver = new ChromeDriver();
+            String browser = System.getProperty("browser", "chrome"); // default chrome
+
+            switch (browser.toLowerCase()) {
+                case "firefox":
+                    driver = new FirefoxDriver();
+                    break;
+                case "edge":
+                    driver = new EdgeDriver();
+                    break;
+                default:
+                    driver = new ChromeDriver();
+            }
+
             driver.manage().window().maximize();
         }
         return driver;
     }
 
-    // Fecha o navegador e limpa a instância
     public static void quitDriver() {
         if (driver != null) {
             driver.quit();

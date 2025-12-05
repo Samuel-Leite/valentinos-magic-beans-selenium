@@ -9,12 +9,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static core.driver.DriverFactory.driver;
+import core.driver.DriverFactory;
 
 @Log4j2
 public class Asserts {
 
     public static boolean verifyElementIsClickable(WebElement element) {
+        WebDriver driver = DriverFactory.getDriver();
         try {
             log.debug("Verificando se elemento é clicável: {}", element);
 
@@ -38,6 +39,7 @@ public class Asserts {
     }
 
     public static boolean verifyElementIsVisible(WebElement element) {
+        WebDriver driver = DriverFactory.getDriver();
         int maxAttempts = 3;
         boolean isVisible = false;
 
@@ -68,7 +70,7 @@ public class Asserts {
      * Útil para debugging, evidência e visibilidade durante execução.
      * @param driver WebDriver ativo
      * @param element Elemento alvo
-     * @param color Cor em RGBA ou HEX (se null usa amarelo padrão)
+     * @param color Cor em RGBA ou HEX (se null usa azul padrão)
      */
     public static void highlightElement(WebDriver driver, WebElement element, String color) {
         String env = System.getProperty("env", "qa"); // default qa
@@ -76,7 +78,7 @@ public class Asserts {
 
         try {
             String highlightColor = (color == null || color.isEmpty())
-                    ? "rgba(0,0,255,0.5)"
+                    ? "rgba(0,0,255,0.5)" // azul padrão
                     : color;
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
