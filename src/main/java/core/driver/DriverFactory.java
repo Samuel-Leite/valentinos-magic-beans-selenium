@@ -1,8 +1,12 @@
 package core.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
+@Log4j2
 public class DriverFactory {
 
     private static WebDriver driver;
@@ -17,14 +21,16 @@ public class DriverFactory {
             switch (browser.toLowerCase()) {
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new org.openqa.selenium.firefox.FirefoxDriver();
+                    driver = new FirefoxDriver();
+                    log.info("Inicializando navegador: Firefox");
                     break;
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new org.openqa.selenium.chrome.ChromeDriver();
+                    driver = new ChromeDriver();
+                    log.info("Inicializando navegador: Chrome");
                     break;
                 default:
-                    throw new IllegalArgumentException("Navegador inválido: " + browser);
+                    throw new IllegalArgumentException("Navegador informado está inválido: " + browser);
             }
         }
         return driver;
@@ -32,6 +38,7 @@ public class DriverFactory {
 
     public static void quitDriver() {
         if (driver != null) {
+            log.info("Encerrando navegador...");
             driver.quit();
             driver = null;
         }
