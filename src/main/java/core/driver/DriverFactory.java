@@ -1,9 +1,7 @@
 package core.driver;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 
 public class DriverFactory {
 
@@ -11,20 +9,23 @@ public class DriverFactory {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            String browser = System.getProperty("browser", "chrome"); // default chrome
+            String browser = System.getProperty("browser");
+            if (browser == null || browser.isEmpty()) {
+                throw new IllegalStateException("Parâmetro 'browser' não informado. Use chrome|firefox|edge");
+            }
 
             switch (browser.toLowerCase()) {
                 case "firefox":
-                    driver = new FirefoxDriver();
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new org.openqa.selenium.firefox.FirefoxDriver();
                     break;
-                case "edge":
-                    driver = new EdgeDriver();
+                case "chrome":
+                    WebDriverManager.chromedriver().setup();
+                    driver = new org.openqa.selenium.chrome.ChromeDriver();
                     break;
                 default:
-                    driver = new ChromeDriver();
+                    throw new IllegalArgumentException("Navegador inválido: " + browser);
             }
-
-            driver.manage().window().maximize();
         }
         return driver;
     }

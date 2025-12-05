@@ -24,8 +24,9 @@ public class Runner extends AbstractTestNGCucumberTests {
     }
 
     @BeforeSuite
-    @Parameters({"environment"})
-    public void setupEnv(String environment) {
+    @Parameters({"environment", "browser"})
+    public void setupEnv(String environment, String browser) {
         System.setProperty("env", environment);
+        System.setProperty("browser", browser);
     }
 }

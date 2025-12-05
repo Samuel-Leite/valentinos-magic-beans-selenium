@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="tests" thread-count="5">
     <parameter name="environment" value="qa"/> <!-- qa ou prod -->
+    <parameter name="browser" value="firefox"/>   <!-- chrome ou firefox -->
     <test name="Harvest of Quality">
         <classes>
             <class name="runner.Runner"/>

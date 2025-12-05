@@ -10,13 +10,13 @@ public class Hooks {
 
     @Before
     public void setUp() {
-        DriverFactory.getDriver(); // inicializa driver
+        DriverFactory.getDriver();
         log.info("Iniciando o teste");
     }
 
     @After
     public void tearDown() {
-        DriverFactory.quitDriver(); // fecha driver
+        DriverFactory.quitDriver();
         log.info("Navegador fechado");
     }
 }
