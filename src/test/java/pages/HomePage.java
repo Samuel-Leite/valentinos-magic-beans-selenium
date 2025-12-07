@@ -32,5 +32,6 @@ public class HomePage extends HomeAttributes {
         click(btnUserMenu);
         verifyElementIsClickable(btnLogOut);
         click(btnLogOut);
+        percySnapshot("Apos realizar logout");
     }
 }
