@@ -4,6 +4,7 @@ import attributes.HomeAttributes;
 
 import static utils.Actions.*;
 import static utils.Asserts.*;
+import static utils.Percy.percySnapshot;
 
 /**
  * Page Object da página inicial (Home).
@@ -19,6 +20,7 @@ public class HomePage extends HomeAttributes {
      */
     public void validarLoginSucesso() {
         verifyElementIsVisible(toastLoginSuccess);
+        percySnapshot("Home");
     }
 
     /**
@@ -30,5 +32,6 @@ public class HomePage extends HomeAttributes {
         click(btnUserMenu);
         verifyElementIsClickable(btnLogOut);
         click(btnLogOut);
+        percySnapshot("Apos realizar logout");
     }
 }

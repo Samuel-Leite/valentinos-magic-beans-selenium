@@ -6,6 +6,7 @@ import core.data.DataYaml;
 import static utils.Actions.click;
 import static utils.Actions.sendKeys;
 import static utils.Asserts.verifyElementIsClickable;
+import static utils.Percy.percySnapshot;
 
 /**
  * Page Object da página de Login.
@@ -22,6 +23,7 @@ public class LoginPage extends LoginAttributes {
      */
     public void acessaAplicacao() {
         driver.get(url);
+        percySnapshot("Página de Login");
     }
 
     /**
@@ -33,13 +35,11 @@ public class LoginPage extends LoginAttributes {
     public void realizarLogin(String email, String password) {
         verifyElementIsClickable(btnLogin);
         click(btnLogin);
-
+        percySnapshot("Página das credenciais");
         verifyElementIsClickable(txtEmail);
         sendKeys(txtEmail, email);
-
         verifyElementIsClickable(txtPassword);
         sendKeys(txtPassword, password);
-
         verifyElementIsClickable(btnSubmit);
         click(btnSubmit);
     }
