@@ -3,10 +3,10 @@ package pages;
 import attributes.LoginAttributes;
 import core.data.DataYaml;
 
+import static core.Percy.percy.percySnapshot;
 import static utils.Actions.click;
 import static utils.Actions.sendKeys;
 import static utils.Asserts.verifyElementIsClickable;
-import static utils.Percy.percySnapshot;
 
 /**
  * Page Object da página de Login.

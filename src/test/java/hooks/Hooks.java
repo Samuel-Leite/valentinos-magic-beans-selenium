@@ -1,12 +1,12 @@
 package hooks;
 
+import core.Percy.percy;
 import core.driver.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import lombok.extern.log4j.Log4j2;
-import utils.Percy;
 import utils.Screenshot;
 
 /**
@@ -30,7 +30,7 @@ public class Hooks {
     public void setUp(Scenario scenario) {
         this.scenario = scenario;
         DriverFactory.getDriver();
-        Percy.init();
+        percy.init();
         log.info("TESTE INICIADO: {}", scenario.getName());
     }
 

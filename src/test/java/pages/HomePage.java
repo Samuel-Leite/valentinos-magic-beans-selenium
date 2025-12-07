@@ -4,7 +4,7 @@ import attributes.HomeAttributes;
 
 import static utils.Actions.*;
 import static utils.Asserts.*;
-import static utils.Percy.percySnapshot;
+import static core.Percy.percy.percySnapshot;
 
 /**
  * Page Object da página inicial (Home).
