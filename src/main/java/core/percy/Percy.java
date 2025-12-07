@@ -1,20 +1,18 @@
-package core.Percy;
+package core.percy;
 
 import core.driver.DriverFactory;
 import org.openqa.selenium.WebDriver;
 
-public class percy {
+public class Percy {
 
-    // A instância deve ser da SUA classe utilitária, não do Percy oficial
-    private static percy instance;
+    private static Percy instance;
 
-    // Percy oficial
     private final io.percy.selenium.Percy percy;
 
     /**
      * Construtor: recebe o WebDriver e inicializa o Percy oficial.
      */
-    public percy(WebDriver driver) {
+    public Percy(WebDriver driver) {
         this.percy = new io.percy.selenium.Percy(driver);
     }
 
@@ -25,7 +23,7 @@ public class percy {
     public static void init() {
         WebDriver driver = DriverFactory.getDriver();
         if (instance == null) {
-            instance = new percy(driver); // instancia a SUA classe
+            instance = new Percy(driver); // instancia a SUA classe
         }
     }
 

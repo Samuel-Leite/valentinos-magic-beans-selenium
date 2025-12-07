@@ -3,7 +3,7 @@ package pages;
 import attributes.LoginAttributes;
 import core.data.DataYaml;
 
-import static core.Percy.percy.percySnapshot;
+import static core.percy.Percy.percySnapshot;
 import static utils.Actions.click;
 import static utils.Actions.sendKeys;
 import static utils.Asserts.verifyElementIsClickable;
