@@ -36,7 +36,7 @@ Este projeto está licenciado sob a **Licença MIT**.
 ---
 
 ## 🚀 Sobre o Projeto
-Este repositório contém uma suíte robusta de automação de testes de ponta a ponta desenvolvida com o framework <a href="https://playwright.dev/">Playwright</a>. Seu propósito é validar funcionalidades críticas de aplicações web modernas por meio de testes confiáveis, organizados e escaláveis, integrados a pipelines de CI/CD e Grafana com Prometheus, e Allure report.
+Este repositório contém uma suíte robusta de automação de testes de ponta a ponta desenvolvida com o framework Selenium. Seu propósito é validar funcionalidades críticas de aplicações web modernas por meio de testes confiáveis, organizados e escaláveis, integrados a pipelines de CI/CD e Grafana com Prometheus, e Allure report.
 
 ## 📚 Principais Funcionalidades
 - End-to-end testing com Selenium, Testng e Java
@@ -55,13 +55,13 @@ Este repositório contém uma suíte robusta de automação de testes de ponta a
 
 ## 🚦 Auditoria de Performance com Lighthouse
 
-Para detalhes completos como executar auditorias de performance em páginas web usando o Lighthouse integrado ao Playwright, consulte o [Guia de Auditoria Lighthouse](docs/lighthouse.md).
+Para detalhes completos como executar auditorias de performance em páginas web usando o Lighthouse integrado ao Selenium, consulte o [Guia de Auditoria Lighthouse](docs/lighthouse.md).
 
 ---
 
 ## 📸 Integração e execução com o Percy
 
-Este projeto utiliza o [Percy](https://percy.io/) para testes visuais automatizados, permitindo identificar mudanças inesperadas na interface da aplicação durante a execução dos testes com Playwright. Para mais detalhes sobre a configuração e uso do Percy, consulte o [Guia de Execução Percy](docs/percy.md).
+Este projeto utiliza o [Percy](https://percy.io/) para testes visuais automatizados, permitindo identificar mudanças inesperadas na interface da aplicação durante a execução dos testes com Selenium. Para mais detalhes sobre a configuração e uso do Percy, consulte o [Guia de Execução Percy](docs/percy.md).
 
 ---
 
@@ -74,6 +74,5 @@ valentino-magic-beans/
 
 ## 🔗 Links Úteis
 - [Percy Dashboard](https://percy.io/)
-- [Allure Report para Playwright](https://github.com/allure-framework/allure-playwright)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Hub Docker](https://hub.docker.com/)
