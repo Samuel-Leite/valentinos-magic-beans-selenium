@@ -2,6 +2,7 @@ package pages;
 
 import attributes.HomeAttributes;
 
+import static core.lighthouse.Lighthouse.runLighthouse;
 import static utils.Actions.*;
 import static utils.Asserts.*;
 import static core.percy.Percy.percySnapshot;
@@ -21,6 +22,7 @@ public class HomePage extends HomeAttributes {
     public void validarLoginSucesso() {
         verifyElementIsVisible(toastLoginSuccess);
         percySnapshot("Home");
+        runLighthouse("lighthouse-home.html");
     }
 
     /**
