@@ -55,13 +55,13 @@ Este repositório contém uma suíte robusta de automação de testes de ponta a
 
 ## 🚦 Auditoria de Performance com Lighthouse
 
-Para detalhes completos como executar auditorias de performance em páginas web usando o Lighthouse integrado ao Playwright, consulte o [Guia de Auditoria Lighthouse](../portuguese/lighthouse-pt.md).
+Para detalhes completos como executar auditorias de performance em páginas web usando o Lighthouse integrado ao Playwright, consulte o [Guia de Auditoria Lighthouse](docs/lighthouse.md).
 
 ---
 
 ## 📸 Integração e execução com o Percy
 
-Este projeto utiliza o [Percy](https://percy.io/) para testes visuais automatizados, permitindo identificar mudanças inesperadas na interface da aplicação durante a execução dos testes com Playwright. Para mais detalhes sobre a configuração e uso do Percy, consulte o [Guia de Execução Percy](../portuguese/percy-pt.md).
+Este projeto utiliza o [Percy](https://percy.io/) para testes visuais automatizados, permitindo identificar mudanças inesperadas na interface da aplicação durante a execução dos testes com Playwright. Para mais detalhes sobre a configuração e uso do Percy, consulte o [Guia de Execução Percy](docs/percy.md).
 
 ---
 

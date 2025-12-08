@@ -1,0 +1,105 @@
+# 🚦 Integração com Lighthouse via BrowserStack
+
+Este projeto oferece suporte à execução de auditorias de performance com **Lighthouse** durante os testes automatizados.  
+A integração permite validar métricas de desempenho e boas práticas da aplicação em tempo real, sem a necessidade de abrir navegadores locais.
+
+---
+
+## 📘 Índice
+
+- [🎯 Propósito](#-propósito)
+- [⚙️ Como Funciona](#-como-funciona)
+- [🔐 Variáveis de Ambiente Necessárias](#-variáveis-de-ambiente-necessárias)
+- [📂 Estrutura do Projeto](#-estrutura-do-projeto)
+- [🛠️ Componentes Principais](#-componentes-principais)
+    - [`lighthouseExecutor.ts`](#lighthouseexecutorts)
+    - [`login-lighthouse.spec.ts`](#login-lighthousespects)
+- [🧯 Solução de Problemas](#-solução-de-problemas)
+- [📄 Arquivos Fonte](#-arquivos-fonte)
+
+---
+
+## 🎯 Propósito
+
+- Executar auditorias de performance com Lighthouse durante os testes automatizados
+- Validar métricas como FCP, LCP, TBT e CLS diretamente no fluxo de testes
+- Integrar com o protocolo `browserstack_executor` para execução remota
+- Automatizar validações com base em limites mínimos de qualidade
+
+---
+
+## ⚙️ Como Funciona
+
+
+---
+
+## 📊 Indicadores do Lighthouse
+
+Os indicadores abaixo explicam como o Lighthouse avalia diferentes aspectos de qualidade de uma aplicação web:
+
+- **Performance** ⚡  
+  Mede a velocidade e eficiência de carregamento da página.  
+  Inclui métricas como *First Contentful Paint (FCP)*, *Largest Contentful Paint (LCP)*, *Total Blocking Time (TBT)* e *Cumulative Layout Shift (CLS)*.  
+  Em resumo: indica o quão rápido e estável o site é para o usuário.
+
+- **Accessibility** ♿  
+  Avalia se o site é utilizável por pessoas com deficiência.  
+  Checa contraste de cores, nomes de botões/links, estrutura de títulos e navegação por teclado.  
+  Em resumo: mostra se o site é inclusivo e acessível para todos.
+
+- **Best Practices** ✅  
+  Verifica se o site segue boas práticas de desenvolvimento e segurança.  
+  Exemplos: uso correto de HTTPS, proteção contra ataques XSS, evitar recursos obsoletos.  
+  Em resumo: garante que o site está construído de forma moderna e segura.
+
+- **SEO (Search Engine Optimization)** 🔍  
+  Mede se o site está otimizado para aparecer em buscadores como Google.  
+  Checa indexação, meta tags e recomendações básicas de SEO.  
+  Em resumo: indica se o site tem boas chances de ser encontrado em pesquisas.
+
+- **PWA (Progressive Web App)** 📱  
+  Avalia se o site pode funcionar como um aplicativo instalável.  
+  Checa manifest.json, service worker, splash screen e configuração de tema.  
+  Em resumo: mostra se o site pode ser usado como um app no celular ou desktop.
+
+---
+
+## 📂 Estrutura do Projeto
+
+```bash
+
+```
+
+---
+
+## 🛠️ Componentes Principais
+
+#### 🎯 Propósito
+- Disparar auditorias de performance com o protocolo browserstack_executor
+- Validar métricas e categorias com base em limites definidos
+- Registrar logs de sucesso ou falha para análise
+
+#### 🔑 Métodos Principais
+
+---
+
+#### 🎯 Propósito
+- Validar a performance da aplicação
+- Garantir que a tela inicial atenda aos critérios mínimos de qualidade
+
+---
+
+#### 💻 Exemplo de Uso
+
+---
+
+## 🧯 Solução de Problemas
+
+| Problema                      | Causa | Solução                                              |
+|-------------------------------|-------|------------------------------------------------------|
+|  |       |   |
+
+---
+
+## 📄 Arquivos Fonte
+- [Evidências do Lighthouse](target/lighthouse-reports)
