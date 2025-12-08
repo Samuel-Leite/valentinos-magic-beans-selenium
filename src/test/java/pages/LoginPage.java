@@ -3,10 +3,11 @@ package pages;
 import attributes.LoginAttributes;
 import core.data.DataYaml;
 
+import static core.lighthouse.Lighthouse.runLighthouse;
+import static core.percy.Percy.percySnapshot;
 import static utils.Actions.click;
 import static utils.Actions.sendKeys;
 import static utils.Asserts.verifyElementIsClickable;
-import static utils.Percy.percySnapshot;
 
 /**
  * Page Object da página de Login.
@@ -23,6 +24,7 @@ public class LoginPage extends LoginAttributes {
      */
     public void acessaAplicacao() {
         driver.get(url);
+        runLighthouse("lighthouse-login.html");
         percySnapshot("Página de Login");
     }
 
@@ -42,5 +44,6 @@ public class LoginPage extends LoginAttributes {
         sendKeys(txtPassword, password);
         verifyElementIsClickable(btnSubmit);
         click(btnSubmit);
+        runLighthouse("lighthouse-credenciais.html");
     }
 }

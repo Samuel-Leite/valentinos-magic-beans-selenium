@@ -1,12 +1,12 @@
 package hooks;
 
 import core.driver.DriverFactory;
+import core.percy.Percy;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import lombok.extern.log4j.Log4j2;
-import utils.Percy;
 import utils.Screenshot;
 
 /**

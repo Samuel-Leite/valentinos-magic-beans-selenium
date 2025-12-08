@@ -24,10 +24,11 @@ public class Runner extends AbstractTestNGCucumberTests {
     }
 
     @BeforeSuite
-    @Parameters({"environment", "browser", "headless"})
-    public void setupEnv(String environment, String browser, String headless) {
+    @Parameters({"environment", "browser", "headless", "lighthouse"})
+    public void setupEnv(String environment, String browser, String headless, String lighthouse) {
         System.setProperty("env", environment);
         System.setProperty("browser", browser);
         System.setProperty("headless", headless);
+        System.setProperty("lighthouse", lighthouse);
     }
 }
