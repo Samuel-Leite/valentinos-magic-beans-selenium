@@ -4,7 +4,7 @@
     <parameter name="environment" value="qa"/> <!-- qa ou prod -->
     <parameter name="browser" value="chrome"/> <!-- chrome ou firefox -->
     <parameter name="headless" value="false"/>  <!-- true ou false -->
-    <parameter name="lighthouse" value="true"/> <!-- true ou false -->
+    <parameter name="lighthouse" value="false"/> <!-- true ou false -->
     <test name="Harvest of Quality">
         <classes>
             <class name="runner.Runner"/>
