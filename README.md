@@ -116,6 +116,7 @@ valentino-magic-beans/
 │           ├───features
 │           ├───log4j2.properties
 │           └───testng.xml
+├───target
 ├───.gitignore
 ├───pom.xml
 ├───README.md
