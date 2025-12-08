@@ -11,30 +11,13 @@
   <img src="https://img.shields.io/badge/Cucumber-23D96C?style=for-the-badge&logo=cucumber&logoColor=white" alt="Cucumber" />
   <img src="https://img.shields.io/badge/Gherkin-5A9BD5?style=for-the-badge&logoColor=white" alt="Gherkin" />
 
-  <!-- Qualidade e Padronização -->
-  <img src="https://img.shields.io/badge/Checkstyle-code%20quality-blueviolet?style=for-the-badge&logo=checkstyle&logoColor=white" alt="Checkstyle" />
-  <img src="https://img.shields.io/badge/SpotBugs-static%20analysis-critical?style=for-the-badge&logo=java&logoColor=white" alt="SpotBugs" />
-  <img src="https://img.shields.io/badge/Conventional%20Commits-commitlint-yellow?style=for-the-badge&logo=git&logoColor=white" alt="Commitlint" />
-
   <!-- Integrações e Observabilidade -->
-  <img src="https://img.shields.io/badge/BrowserStack-integrated-orange?style=for-the-badge&logo=browserstack&logoColor=white" alt="BrowserStack" />
-  <img src="https://img.shields.io/badge/Azure%20DevOps-Test%20Plans-0078D7?style=for-the-badge&logo=azuredevops&logoColor=white" alt="Azure DevOps Test Plans" />
   <img src="https://img.shields.io/badge/Percy-Visual%20Testing-8c4eff?style=for-the-badge&logo=percy&logoColor=white" alt="Percy" />
   <img src="https://img.shields.io/badge/Lighthouse-Performance%20Audit-00bcd4?style=for-the-badge&logo=lighthouse&logoColor=white" alt="Lighthouse" />
-  <img src="https://img.shields.io/badge/Prometheus-Metrics-e6522c?style=for-the-badge&logo=prometheus&logoColor=white" alt="Prometheus" />
-  <img src="https://img.shields.io/badge/Grafana-Dashboard-f46800?style=for-the-badge&logo=grafana&logoColor=white" alt="Grafana" />
-
-  <!-- CI/CD e Relatórios -->
-  <img src="https://img.shields.io/badge/CI-GitHub%20Actions-blue?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions" />
-  <a href="https://samuel-leite.github.io/valentinos-magic-beans-selenium/">
-    <img src="https://img.shields.io/badge/Allure-Report-blue?style=for-the-badge&logo=allure&logoColor=white" alt="Allure Report" />
-  </a>
 
   <!-- Cobertura e Licença -->
   <img src="https://img.shields.io/badge/Coverage-100%25-success?style=for-the-badge" alt="Coverage" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License" />
-	@FindBy(css="")
-	private WebElement webElement;
 </div>
 
 ## 📦 Requisitos
