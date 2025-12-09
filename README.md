@@ -69,7 +69,57 @@ Este projeto utiliza o [Percy](https://percy.io/) para testes visuais automatiza
 
 ```bash
 valentino-magic-beans/
-
+├───docs
+├───src
+│   ├───main
+│   │   ├───java
+│   │   │   └───core
+│   │   │       ├───base
+│   │   │       │   └───BasePage.java
+│   │   │       ├───data
+│   │   │       │   └───DataYaml.java
+│   │   │       ├───driver
+│   │   │       │   └───DriverFactory.java
+│   │   │       ├───lighthouse
+│   │   │       │   └───Lighthouse.java
+│   │   │       └───percy
+│   │   │           └───Percy.java
+│   │   └───resources
+│   │       └───conf
+│   │           ├───url-prod.yml
+│   │           └───url-qa.yml
+│   └───test
+│       ├───java
+│       │   ├───attributes
+│       │   │   ├───HomeAttributes.java
+│       │   │   └───LoginAttributes.java
+│       │   ├───hooks
+│       │   │   └───Hooks.java
+│       │   ├───pages
+│       │   │   ├───HomePage.java
+│       │   │   └───LoginPage.java
+│       │   ├───runner
+│       │   │   └───Runner.java
+│       │   ├───steps
+│       │   │   ├───HomeSteps.java
+│       │   │   └───LoginSteps.java
+│       │   └───utils
+│       │       ├───Actions.java
+│       │       ├───Asserts.java
+│       │       └───Screenshot.java
+│       └───resources
+│           ├───data
+│           │   ├───prod
+│           │   │   └───credencial.yml
+│           │   └───qa
+│           │       └───credencial.yml
+│           ├───features
+│           ├───log4j2.properties
+│           └───testng.xml
+├───target
+├───.gitignore
+├───pom.xml
+├───README.md
 ```
 
 ## 🔗 Links Úteis
