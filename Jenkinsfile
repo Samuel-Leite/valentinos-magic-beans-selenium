@@ -20,11 +20,10 @@ pipeline {
         stage('Reports') {
             steps {
                 junit '**/target/surefire-reports/*.xml'
-
-                archiveArtifacts artifacts: 'target/screenshots/**', fingerprint: true
-
+        archiveArtifacts artifacts: 'target/screenshots/**', fingerprint: true
                 allure([
-                    'target/allure-results'
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'target/allure-results']]
                 ])
             }
         }
