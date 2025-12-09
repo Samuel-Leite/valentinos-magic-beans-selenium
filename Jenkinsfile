@@ -24,7 +24,7 @@ pipeline {
                 archiveArtifacts artifacts: 'target/screenshots/**', fingerprint: true
 
                 allure([
-                    path: 'target/allure-results'
+                    'target/allure-results'
                 ])
             }
         }
