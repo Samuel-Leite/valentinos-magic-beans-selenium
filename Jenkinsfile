@@ -21,13 +21,10 @@ pipeline {
             steps {
                 junit '**/target/surefire-reports/*.xml'
 
-                // Arquiva screenshots
                 archiveArtifacts artifacts: 'target/screenshots/**', fingerprint: true
 
                 allure([
-                    includeProperties: false,
-                    jdk: '',
-                    results: [[path: 'target/allure-results']]
+                    path: 'target/allure-results'
                 ])
             }
         }
