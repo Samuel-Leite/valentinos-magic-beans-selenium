@@ -15,7 +15,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
  * seja criada durante a execução dos testes.
  *
  * O navegador é definido pelo parâmetro de sistema "browser"
- * (chrome | firefox | edge).
+ * (chrome | firefox).
  */
 @Log4j2
 public class DriverFactory {
@@ -42,8 +42,8 @@ public class DriverFactory {
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
                     if (headless) {
                         firefoxOptions.addArguments("--headless");
+                        firefoxOptions.addArguments("--window-size=1920,1080");
                     }
-                    firefoxOptions.addArguments("--start-maximized");
                     driver = new FirefoxDriver(firefoxOptions);
                     break;
 
@@ -51,8 +51,13 @@ public class DriverFactory {
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
                     if (headless) {
-                        chromeOptions.addArguments("--headless=new"); // headless moderno
+                        chromeOptions.addArguments("--headless=new");
+                        chromeOptions.addArguments("--window-size=1920,1080");
                     }
+                    // flags essenciais para rodar em Docker/Jenkins
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                    chromeOptions.addArguments("--disable-gpu");
                     chromeOptions.addArguments("--start-maximized");
                     driver = new ChromeDriver(chromeOptions);
                     break;
