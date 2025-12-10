@@ -19,11 +19,22 @@ pipeline {
         }
         stage('Reports') {
             steps {
+                // Publica relatórios JUnit
                 junit '**/target/surefire-reports/*.xml'
+
+                // Arquiva screenshots
                 archiveArtifacts artifacts: 'target/screenshots/**', fingerprint: true
 
-                // Publica relatório Allure
-                allure results: [[path: 'target/allure-results']]
+                // Publica relatório HTML customizado
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: false,
+                    reportDir: 'target',
+                    reportFiles: 'report.html',
+                    reportName: 'Harvest of Quality Report',
+                    useWrapperFileDirectly: true
+                ])
             }
         }
     }
