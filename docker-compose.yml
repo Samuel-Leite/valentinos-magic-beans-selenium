@@ -13,6 +13,32 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+    networks:
+      - jenkins_net
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - jenkins_net
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    networks:
+      - jenkins_net
 
 volumes:
   jenkins_home:
+
+networks:
+  jenkins_net:
+    driver: bridge
