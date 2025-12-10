@@ -20,13 +20,8 @@ pipeline {
         }
         stage('Reports') {
             steps {
-                // Publica relatórios JUnit
                 junit '**/target/surefire-reports/*.xml'
-
-                // Arquiva screenshots
                 archiveArtifacts artifacts: 'target/screenshots/**', fingerprint: true
-
-                // Publica relatório HTML customizado
                 publishHTML([
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
