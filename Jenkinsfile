@@ -26,8 +26,8 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: false,
-                    reportDir: 'target/site',
-                    reportFiles: 'surefire-report.html',
+                    reportDir: 'target',
+                    reportFiles: 'report.html',
                     reportName: 'Harvest of Quality Report',
                     useWrapperFileDirectly: true
                 ])
