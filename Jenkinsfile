@@ -15,6 +15,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'mvn test -Denvironment=qa -Dbrowser=chrome -Dheadless=true -Dlighthouse=false'
+                sh 'mvn surefire-report:report'
             }
         }
         stage('Reports') {
