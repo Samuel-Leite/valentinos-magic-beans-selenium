@@ -65,6 +65,16 @@ Este projeto utiliza o [Percy](https://percy.io/) para testes visuais automatiza
 
 ---
 
+---
+
+## 📦 Integração Grafana + Prometheus
+
+Este projeto utiliza o [Docker](https://www.docker.com/) para orquestrar uma stack de monitoramento que inclui o [Prometheus](https://prometheus.io/) para coleta de métricas dos testes e o [Grafana](https://grafana.com/) para visualização em tempo real.  
+A coleta das métricas ocorrem durante as execuções da Pipeline através do Jenkins que faz a captura das métricas da duração, número de tentativas, falhas e etc - são coletadas pelo Prometheus e exibidas em painéis do Grafana.  
+Para instruções detalhadas de configuração e uso, consulte o [Guia do Jenkins e Grafana](docs/jenkins-grafana.md) e a [Guia das Métricas do Grafana](docs/dashboard-metricas.md)
+
+---
+
 ## 📂 Estrutura do Projeto
 
 ```bash
