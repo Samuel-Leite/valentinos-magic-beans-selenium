@@ -63,7 +63,7 @@ Este documento organiza todas as métricas discutidas, separadas em painéis ún
 ---
 
 ## 🎯 Resumindo
-Essas 10 métricas permitem responder perguntas essenciais:
+As 7 métricas permitem responder perguntas essenciais:
 - **Performance:** Quanto tempo os builds levam? (Tempo de Execução, Waiting Duration)
 - **Estabilidade:** Os builds estão falhando ou instáveis? (Instáveis, Abortados)
 - **Recursos:** O servidor aguenta a carga? (CPU, Memória, GC)
