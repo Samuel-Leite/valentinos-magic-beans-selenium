@@ -153,3 +153,5 @@ valentino-magic-beans/
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Hub Docker](https://hub.docker.com/)
 - [Pontuação de desempenho do Lighthouse](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring?hl=pt-br)
+- [Grafana](https://grafana.com/)
+- [Prometheus](https://prometheus.io/)

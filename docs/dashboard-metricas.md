@@ -1,10 +1,10 @@
 # 📊 Dashboard de Métricas — Infraestrutura e Execução de Testes Automatizados
 
-Este documento organiza todas as métricas discutidas, separadas em painéis únicos e painéis múltiplos, para facilitar a configuração e interpretação no Grafana.
+Este documento organiza todas as métricas citadas no Dashboard do Grafana, separadas em painéis únicos e painéis múltiplos, para facilitar a configuração e interpretação:
 
 ---
 
-## Documentação das 10 Métricas — Jenkins + Selenium
+## Documentação com as métricas:
 
 ### 1 - Tempo de Execução dos Builds (Percentis)
 
@@ -68,3 +68,6 @@ As 7 métricas permitem responder perguntas essenciais:
 - **Estabilidade:** Os builds estão falhando ou instáveis? (Instáveis, Abortados)
 - **Recursos:** O servidor aguenta a carga? (CPU, Memória, GC)
 - **Eficiência:** Há gargalos na fila? (Fila de Execução)
+
+## 🔗 Links Úteis
+- [Construção do Dashboard](docs/grafana-dashboard.json)
