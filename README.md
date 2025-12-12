@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Valentino's Magic Beans</h1>
-  <p><strong>Framework de automação de testes E2E com arquitetura escalável e integração contínua</strong><br>Projetado para validar funcionalidades críticas de aplicações web modernas, com foco em rastreabilidade, qualidade de código e integração com plataformas corporativas.</p><br>
+  <p><strong>Framework de automação de testes E2E com arquitetura escalável e integração contínua</strong><br>Projetado para validar funcionalidades críticas de aplicações web modernas.</p><br>
 </div>
 
 <div align="center">
@@ -26,9 +26,12 @@
 - Java 11
 - Gherkin e Cucumber
 - Credenciais do Percy (teste visual)
+- Docker
+- Prometheus 
+- Grafana
 
 ## 🚀 Propósito
-Este projeto tem como objetivo validar funcionalidades críticas da aplicação web [**Valentino's Magic Beans**](https://valentinos-magic-beans.click) através de testes automatizados robustos, rastreáveis e escaláveis, com foco em boas práticas de desenvolvimento e qualidade de código.
+Este projeto tem como objetivo validar funcionalidades da aplicação web [**Valentino's Magic Beans**](https://valentinos-magic-beans.click) através de testes automatizados robustos, rastreáveis e escaláveis, com foco em boas práticas de desenvolvimento e qualidade de código.
 
 ## 📄 Licença
 Este projeto está licenciado sob a **Licença MIT**.
@@ -36,10 +39,12 @@ Este projeto está licenciado sob a **Licença MIT**.
 ---
 
 ## 🚀 Sobre o Projeto
-Este repositório contém uma suíte robusta de automação de testes de ponta a ponta desenvolvida com o framework Selenium. Seu propósito é validar funcionalidades críticas de aplicações web modernas por meio de testes confiáveis, organizados e escaláveis, integrados a pipelines de CI/CD e Grafana com Prometheus, e Allure report.
+Este repositório contém uma suíte robusta de automação de testes de ponta a ponta desenvolvida com o framework Selenium e TestNG utilizando a linguagem Java. O propósito é validar as funcionalidades críticas da aplicação web modernas por meio de testes confiáveis, organizados e escaláveis, integrados a pipelines de CI/CD e Grafana com Prometheus.
+
+---
 
 ## 📚 Principais Funcionalidades
-- End-to-end testing com Selenium, Testng e Java
+- End-to-end testing com Selenium, TestNG e Java
 - Arquitetura de testes modular e escalável
 - Geração de screenshots em todos os testes
 - Auditoria de performance com Lighthouse
@@ -48,7 +53,9 @@ Este repositório contém uma suíte robusta de automação de testes de ponta a
 - Exposição de métricas via Prometheus com visualização de métricas no dashboards Grafana
 - Execução dos testes na pipeline através do Jenkins
 
-## 🛠️ Instalar dependências
+---
+
+## 🛠️ Configuração das dependências
 ```bash
 # Dependências do percy
 npm install --save-dev @percy/cli
@@ -60,22 +67,20 @@ npm install -g lighthouse
 
 ## 🚦 Auditoria de Performance com Lighthouse
 
-Para detalhes completos como executar auditorias de performance em páginas web usando o Lighthouse integrado ao Selenium, consulte o [Guia de Auditoria Lighthouse](docs/lighthouse.md).
+Para detalhes completos como executar auditorias de performance em páginas web usando o Lighthouse integrado ao Selenium e TestNG com a linguagem Java, consulte o [Guia de Auditoria Lighthouse](docs/lighthouse.md).
 
 ---
 
 ## 📸 Integração e execução com o Percy
 
-Este projeto utiliza o [Percy](https://percy.io/) para testes visuais automatizados, permitindo identificar mudanças inesperadas na interface da aplicação durante a execução dos testes com Selenium. Para mais detalhes sobre a configuração e uso do Percy, consulte o [Guia de Execução Percy](docs/percy.md).
-
----
+Este projeto utiliza o [Percy](https://percy.io/) para testes visuais automatizados, permitindo identificar mudanças inesperadas na interface da aplicação durante a execução dos testes. Para mais detalhes sobre a configuração e uso do Percy, consulte o [Guia de Execução Percy](docs/percy.md).
 
 ---
 
 ## 📦 Integração Grafana + Prometheus
 
 Este projeto utiliza o [Docker](https://www.docker.com/) para orquestrar uma stack de monitoramento que inclui o [Prometheus](https://prometheus.io/) para coleta de métricas dos testes e o [Grafana](https://grafana.com/) para visualização em tempo real.  
-A coleta das métricas ocorrem durante as execuções da Pipeline através do Jenkins que faz a captura das métricas da duração, número de tentativas, falhas e etc - são coletadas pelo Prometheus e exibidas em painéis do Grafana.  
+A coleta das métricas ocorrem durante as execuções da Pipeline através do Jenkins, por exemplo: captura da duração, número de tentativas, falhas e etc - são coletadas pelo Prometheus e exibidas nos painéis do Grafana.  
 Para instruções detalhadas de configuração e uso, consulte o [Guia do Jenkins e Grafana](docs/jenkins-grafana.md) e a [Guia das Métricas do Grafana](docs/dashboard-metricas.md)
 
 ---
@@ -84,64 +89,67 @@ Para instruções detalhadas de configuração e uso, consulte o [Guia do Jenkin
 
 ```bash
 valentino-magic-beans/
-├───docs
+├───docs                                  # Documentação do projeto
 ├───src
 │   ├───main
 │   │   ├───java
-│   │   │   └───core
+│   │   │   └───core                      # Núcleo da automação
 │   │   │       ├───base
-│   │   │       │   └───BasePage.java
+│   │   │       │   └───BasePage.java       # Classe  para  inicializar o WebDriver e mapeia elementos com PageFactory
 │   │   │       ├───data
-│   │   │       │   └───DataYaml.java
+│   │   │       │   └───DataYaml.java       # Leitura de dados em arquivos YAML
 │   │   │       ├───driver
-│   │   │       │   └───DriverFactory.java
+│   │   │       │   └───DriverFactory.java  # Criação e configuração dos drivers Selenium
 │   │   │       ├───lighthouse
-│   │   │       │   └───Lighthouse.java
+│   │   │       │   └───Lighthouse.java     # Integração com auditorias Lighthouse
 │   │   │       └───percy
-│   │   │           └───Percy.java
+│   │   │           └───Percy.java          # Integração com testes visuais Percy
 │   │   └───resources
-│   │       └───conf
+│   │       └───conf                        # Configuração de URLs de acordo com o ambiente
 │   │           ├───url-prod.yml
 │   │           └───url-qa.yml
 │   └───test
 │       ├───java
-│       │   ├───attributes
+│       │   ├───attributes                  # Mapeamento dos elementos das páginas
 │       │   │   ├───HomeAttributes.java
 │       │   │   └───LoginAttributes.java
 │       │   ├───hooks
-│       │   │   └───Hooks.java
-│       │   ├───pages
+│       │   │   └───Hooks.java              # Configurações antes/depois dos testes (setup/teardown)
+│       │   ├───pages                       # Lógicas das páginas
 │       │   │   ├───HomePage.java
 │       │   │   └───LoginPage.java
-│       │   ├───runner
+│       │   ├───runner                      # Classe principal para executar os testes
 │       │   │   └───Runner.java
-│       │   ├───steps
+│       │   ├───steps                       # Definição dos passos dos testes
 │       │   │   ├───HomeSteps.java
 │       │   │   └───LoginSteps.java
 │       │   └───utils
-│       │       ├───Actions.java
-│       │       ├───Asserts.java
-│       │       └───Screenshot.java
+│       │       ├───Actions.java            # Funções auxiliares de interação (cliques, inputs)
+│       │       ├───Asserts.java            # Funções auxiliares de validação/asserts
+│       │       └───Screenshot.java         # Captura de screenshots durante os testes
 │       └───resources
-│           ├───data
+│           ├───data                        # Credenciais de acordo com o  ambiente de teste
 │           │   ├───prod
 │           │   │   └───credencial.yml
 │           │   └───qa
 │           │       └───credencial.yml
-│           ├───features
-│           ├───log4j2.properties
-│           └───testng.xml
-├───target
-├───.gitignore
-├───docker-compose.yml
-├───Dockerfile
-├───Jenkinsfile
-├───pom.xml
-├───prometheus.yml
-├───README.md
+│           ├───features                    # Arquivos de cenários BDD (Gherkin)
+│           ├───log4j2.properties           # Configuração de logs
+│           └───testng.xml                  # Configuração do TestNG (suite de testes)
+├───target                                 # Saída de build/testes (gerado pelo Maven)
+├───.gitignore                             # Arquivos/pastas ignorados pelo Git
+├───docker-compose.yml                     # Orquestração de containers (ex.: Selenium Grid, Jenkins)
+├───Dockerfile                             # Build da imagem Docker do projeto
+├───Jenkinsfile                            # Pipeline de CI/CD para Jenkins
+├───pom.xml                                # Configuração do Maven (dependências e build)
+├───prometheus.yml                         # Configuração do Prometheus para coleta de métricas
+├───README.md                              # Guia inicial e instruções do projeto
 ```
+
+---
 
 ## 🔗 Links Úteis
 - [Percy Dashboard](https://percy.io/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Hub Docker](https://hub.docker.com/)
+- [Pontuação de desempenho do Lighthouse](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring?hl=pt-br)
