@@ -30,6 +30,22 @@ pipeline {
                     reportName: 'Harvest of Quality Report',
                     useWrapperFileDirectly: true
                 ])
+
+                // Gerar Allure Report via CLI usando instalação configurada
+                script {
+                    def allureHome = tool 'ALLURE_HOME'  // nome que você configurou no Jenkins
+                    sh "${allureHome}/bin/allure generate target/allure-results --clean -o target/allure-report"
+                }
+
+                // Publicar Allure Report como HTML
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'target/allure-report',
+                    reportFiles: 'index.html',
+                    reportName: 'Allure Report'
+                ])
             }
         }
     }

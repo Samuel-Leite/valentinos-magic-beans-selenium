@@ -65,6 +65,22 @@ npm install -g lighthouse
 ```
 ---
 
+## ⚡ Execução Paralela
+
+Este framework suporta execução paralela de cenários utilizando o TestNG integrado ao Cucumber. O paralelismo é habilitado diretamente no Runner através do @DataProvider:
+
+```java
+@Override
+@DataProvider(parallel = true)
+public Object[][] scenarios() {
+    return super.scenarios();
+}
+```
+
+- Quando `parallel = true`, os cenários definidos nos arquivos .feature podem ser executados em paralelo.
+
+---
+
 ## 🚦 Auditoria de Performance com Lighthouse
 
 Para detalhes completos como executar auditorias de performance em páginas web usando o Lighthouse integrado ao Selenium e TestNG com a linguagem Java, consulte o [Guia de Auditoria Lighthouse](docs/lighthouse.md).
