@@ -43,4 +43,7 @@ RUN wget -q https://github.com/mozilla/geckodriver/releases/download/${GECKO_VER
     && rm geckodriver-${GECKO_VERSION}-linux64.tar.gz \
     && chmod +x /usr/local/bin/geckodriver
 
+# 🔧 Aqui é onde você adiciona a configuração para desativar a CSP
+ENV JENKINS_JAVA_OPTIONS="-Djenkins.install.runSetupWizard=false -Dhudson.model.DirectoryBrowserSupport.CSP="
+
 USER jenkins
