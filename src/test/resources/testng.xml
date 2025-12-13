@@ -5,6 +5,9 @@
     <parameter name="browser" value="chrome"/> <!-- chrome ou firefox -->
     <parameter name="headless" value="false"/>  <!-- true ou false -->
     <parameter name="lighthouse" value="false"/> <!-- true ou false -->
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
     <test name="Harvest of Quality">
         <classes>
             <class name="runner.Runner"/>

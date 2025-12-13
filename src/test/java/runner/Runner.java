@@ -12,7 +12,8 @@ import org.testng.annotations.Parameters;
         tags = "@wip",
         plugin = {
                 "html:target/generated-reports/cucumber.html",
-                "json:target/generated-reports/cucumber.json"
+                "json:target/generated-reports/cucumber.json",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }
 )
 public class Runner extends AbstractTestNGCucumberTests {
