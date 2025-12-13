@@ -52,6 +52,23 @@ Os indicadores abaixo explicam como o Lighthouse avalia diferentes aspectos de q
   Checa manifest.json, service worker, splash screen e configuração de tema.  
   Em resumo: mostra se o site pode ser usado como um app no celular ou desktop.
 
+### Pontuação dos resultados:
+
+As pontuações são codificadas por cores:
+- 0 a 49 (vermelho): ruim
+- 50 a 89 (laranja): precisa de melhorias
+- 90 a 100 (verde): bom
+
+---
+
+## Métricas de Performance
+
+- [First Contentful Paint (FCP)](https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint?hl=pt-br): mede quanto tempo o navegador leva para renderizar o primeiro conteúdo do DOM depois que um usuário navega até a página
+- [Largest Contentful Paint (LCP)](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint?hl=pt-br): mede quanto tempo o maior elemento de conteúdo na janela de visualização é renderizado na tela, conteúdo principal da página fica visível para os usuários
+- [Total Blocking Time (TBT)](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time?hl=pt-br): mede o tempo total em que uma página fica bloqueada para responder à entrada do usuário, como cliques do mouse, toques na tela ou pressionamentos do teclado
+- [Cumulative Layout Shift (CLS)](https://web.dev/articles/cls?hl=pt-br): quantifica o quanto os elementos da página mudam de posição de forma inesperada enquanto o usuário interage ou a página carrega
+- [Speed Index (SI)](https://developer.chrome.com/docs/lighthouse/performance/speed-index?hl=pt-br): mede a rapidez com que o conteúdo é exibido visualmente durante o carregamento da página
+
 ---
 
 ## 🛠️ Componentes Principais
