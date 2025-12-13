@@ -30,7 +30,7 @@ public class DataYaml {
      * @return Arquivo YAML de configuração
      */
     private static File getYamlConfFile(){
-        String env = System.getProperty("env"); // default qa
+        String env = System.getProperty("env");
         log.info("Carregando a URL do ambiente de '{}'", env);
         return new File("./src/main/resources/conf/url-" + env + ".yml");
     }

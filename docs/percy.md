@@ -24,6 +24,21 @@ A integração permite detectar alterações inesperadas na interface da aplica�
 
 ---
 
+## ⚙️ Instruções para executar o Percy
+
+- Inserir o token no terminal:
+```Powershel
+$env:PERCY_TOKEN=<seu-token>
+```
+
+- Comando para executar o percy:
+
+```bash
+npx percy exec -- mvn test
+```
+
+---
+
 #### 🎯 Propósito
 - Capturar imagens da interface durante o teste
 - Registrar logs de execução para rastreabilidade
