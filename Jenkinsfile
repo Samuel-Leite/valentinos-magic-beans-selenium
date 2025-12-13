@@ -30,12 +30,20 @@ pipeline {
                     reportName: 'Harvest of Quality Report',
                     useWrapperFileDirectly: true
                 ])
-            }
-        }
-        stage('Allure Report') {
-            steps {
-                allure([
-                    results: [[path: 'target/allure-results']]
+
+                // Gerar Allure Report via CLI
+                sh '''
+                    allure generate target/allure-results --clean -o target/allure-report
+                '''
+
+                // Publicar Allure Report como HTML
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'target/allure-report',
+                    reportFiles: 'index.html',
+                    reportName: 'Allure Report'
                 ])
             }
         }
