@@ -209,12 +209,16 @@ Para configurar o publishHTML > 'Pipeline Syntax' > preencher as informações >
 
 Após efetuar as etapas supracitadas poderá executar a pipeline.
 
+---
+
 ## Configurações necessárias no Grafana
 
 ### Configuração do Grafana
 
 - **Configuração:** deve acessar o seguinte path: Home > Connections > Data sources > Add data source > Prometheus > Prometheus server URL (http://prometheus:9090) > Save & test
 - **Dashboards:** deve acessar o seguinte path: Home > Dashboards > New > Import > [carregar os dados json](docs/grafana-dashboard.json) > Load > Import
+
+---
 
 ## 📄 Arquivos Fonte
 
