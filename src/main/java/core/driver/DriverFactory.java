@@ -48,7 +48,7 @@ public class DriverFactory {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    if (headless) {
+                    if (headless || System.getenv("JENKINS_HOME") != null) {
                         chromeOptions.addArguments("--headless=new");
                         chromeOptions.addArguments("--window-size=1920,1080");
                     }
