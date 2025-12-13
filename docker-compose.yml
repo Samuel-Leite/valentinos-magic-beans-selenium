@@ -12,7 +12,7 @@ services:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - JENKINS_JAVA_OPTIONS=-Djenkins.install.runSetupWizard=false -Dhudson.model.DirectoryBrowserSupport.CSP=
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
     networks:
       - jenkins_net
 
