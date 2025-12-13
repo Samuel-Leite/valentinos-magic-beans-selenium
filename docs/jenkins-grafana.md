@@ -1,13 +1,13 @@
 # 📦 Integração Docker + Prometheus + Grafana com execução através da Pipeline do Jenkins
 
-Este projeto integra o **monitoramento com Prometheus** à **automação de testes com Selenium** usando Docker.  
+Este projeto integra a pipeline do Jenkins com o **monitoramento com Prometheus** à **automação de testes com Selenium** usando Docker.  
 Ele expõe métricas personalizadas das execuções de testes e as visualiza em painéis do Grafana.
 
 ---
 
 ## 🎯 Propósito
 
-- Executar testes através da pipeline, Jenkins, em um ambiente containerizado
+- Executar os testes através da pipeline, Jenkins, em um ambiente containerizado
 - Coletar métricas com Prometheus
 - Visualizar resultados em painéis do Grafana
 - Habilitar observabilidade sobre desempenho e confiabilidade dos testes
@@ -16,10 +16,14 @@ Ele expõe métricas personalizadas das execuções de testes e as visualiza em 
 
 ## ⚙️ Como Funciona
 
-1. O serviço `tests` executa os testes Playwright e expõe métricas via `prom-client`.
-2. O Prometheus coleta métricas de `http://tests:9464/metrics` a cada 5 segundos.
-3. O Grafana se conecta ao Prometheus e exibe os painéis.
-4. As métricas incluem duração dos testes, status, tentativas, falhas, ambiente e grupo.
+1. Constrói o container com as configurações necessárias do Jenkins, Prometheus e Grafana,
+   1.1. Precisa configurar o Docker Desktop (https://www.docker.com/products/docker-desktop/),
+2. Executar os testes da pipeline no Jenkins através da URL 'http://localhost:8080/',
+3. Prometheus coleta as métricas através do plugin 'Prometheus metrics' durante a execução,
+   3.2. Para confirmar se o Prometheus está funcionando através da URL 'http://localhost:9090/targets'
+   3.2. Para confirmar se as métricas estão sendo coletadas através da URL 'http://localhost:8080/prometheus/'
+4. O Grafana se conecta ao Prometheus e exibe os painéis.
+5. As métricas incluem duração dos testes, status, tentativas, falhas, ambiente e grupo.
 
 ---
 
@@ -131,6 +135,20 @@ networks:
 
 ---
 
+### `prometheus.yml`
+
+Define onde coletar métricas.
+
+```yaml
+scrape_configs:
+  - job_name: 'jenkins'
+    metrics_path: '/prometheus'
+    static_configs:
+      - targets: ['jenkins-selenium:8080']
+```
+
+---
+
 ## 🧯 Comandos Docker
 
 ### 🔨 Construir imagem
@@ -151,14 +169,55 @@ docker-compose down
 
 ---
 
+## Plugins necessários para configurar no Jenkins
+
+Seguem os plugins necessários para configurar no Jenkins:
+1. Docker Pipeline, 
+2. Docker, 
+3. Pipeline: Stage View, 
+4. Blue Ocean, 
+5. Prometheus metrics
+6. Dark Theme
+7. Allure
+
+---
+
+## Configurações necessárias no Jenkins
+
+### Cadastrar as credenciais do Github para acessar o repositório através do Jenkins
+
+Deve acessar o seguinte path: Gerenciar Jenkins > Credencials > System > Global credentials (unrestricted) > Add Credentials > preencher as informações > Create
+- Kind: Username with password
+- Scope: Global (Jenkins, nodes, items, all child items, etc)
+- Username: nome do usuário no repositório
+- Password: senha do Github
+
+### Configurar o Allure Report
+
+Deve acessar o seguinte path: Gerenciar Jenkins > Tools > Allure Commandline instalações > Allure Commandline > preencher as informações > Save
+- Nome: informar o nome para identificar
+- Versão (From Maven Central): selecionar a versão mais recente
+
+### Configurar a pipeline
+
+Deve acessar o seguinte path: Home > Nova tarefa > preencher nome > Pipeline > Tudo certo > Pipeline > Pipeline script from SCM > SCM: Git > informar a URL do repositório > selecionar credencial > Branch Specifier (main / developer) > Script Path (Jenkinsfile)
+
+Para configurar o publishHTML > 'Pipeline Syntax' > preencher as informações > Generate Pipeline Script > incluir no Jenkinsfile
+- Sample Step: publishHTML: Publish HTML reports
+- HTML directory to archive: report.html
+- Report title: Harvest of Quality Report
+
+Após efetuar as etapas supracitadas poderá executar a pipeline.
+
+## Configurações necessárias no Grafana
+
+### Configuração do Grafana
+
+- **Configuração:** deve acessar o seguinte path: Home > Connections > Data sources > Add data source > Prometheus > Prometheus server URL (http://prometheus:9090) > Save & test
+- **Dashboards:** deve acessar o seguinte path: Home > Dashboards > New > Import > [carregar os dados json](docs/grafana-dashboard.json) > Load > Import
+
 ## 📄 Arquivos Fonte
 
-- [`docker-compose.yml`](../../infra/monitoring/docker-compose.yml)
-- [`Dockerfile`](../../infra/monitoring/Dockerfile)
-- [`metricsInstance.ts`](../../infra/monitoring/metricsInstance.ts)
-- [`metricsServer.ts`](../../infra/monitoring/metricsServer.ts)
-- [`prometheus.yml`](../../infra/monitoring/prometheus.yml)
-- [`startMetrics.ts`](../../infra/monitoring/startMetrics.ts)
-- [`grafana-playwright.json`](../../infra/dashboards/grafana-playwright.json)
-- [Guia das métricas do Grafana](../portuguese/dashboard-metrics-pt.md)
-- [Métricas no Grafana](../../docs/img/grafana.png)
+- [`docker-compose.yml`](docker-compose.yml)
+- [`Dockerfile`](Dockerfile)
+- [Guia das métricas do Grafana](docs/dashboard-metricas.md)
