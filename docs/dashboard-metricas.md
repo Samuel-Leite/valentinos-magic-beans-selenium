@@ -8,57 +8,64 @@ Este documento organiza todas as métricas citadas no Dashboard do Grafana, sepa
 
 ### 1 - Tempo de Execução dos Builds (Percentis)
 
-- **O que transmite:** Mede quanto tempo os builds levam para rodar, em diferentes percentis (P50, P75, P95, etc.).
-- **Objetivo:** Identificar se os builds estão rápidos ou se há builds que demoram demais.
-- **Exemplo prático:** É como medir quanto tempo seus colegas levam para terminar uma tarefa. A maioria termina em 30s (mediana), mas alguns demoram 1min (P95).
+- **O que transmite:** Mostra quanto tempo os builds levam para rodar, usando percentis para indicar o comportamento típico e os casos raros.
+- **Objetivo:** Avaliar se os builds são consistentes e identificar exceções que demoram mais que o esperado.
+- **Exemplo prático:** No gráfico, quase todos os builds terminam em 24,8 segundos, mas existe um caso raro que levou 86 segundos, o que pode indicar um problema pontual ou um build mais pesado.
+![tempo-execucao-build.png](img/tempo-execucao-build.png)
 
 ---
 
 ### 2 - Builds Instáveis
 
-- **O que transmite:** Conta quantos builds terminaram com status “instável” (não falharam totalmente, mas tiveram problemas).
-- **Objetivo:** Detectar instabilidade nos testes automatizados.
-- **Exemplo prático:** É como um carro que funciona, mas com o freio falhando. Ele não quebrou, mas não está confiável.
+- **O que transmite:** Mostra o número de builds que concluíram com status instável.
+- **Objetivo:** Garantir que os builds não apresentem falhas parciais e que os testes sejam confiáveis.
+- **Exemplo prático:** No gráfico, vemos 0 builds instáveis, o que significa que todos os builds rodaram de forma consistente e confiável.
+![builds-instaveis.png](img/builds-instaveis.png)
 
 ---
 
 ### 3 - Builds Abortados
 
-- **O que transmite:** Número de builds que foram interrompidos antes de terminar.
-- **Objetivo:** Monitorar cancelamentos e entender se há problemas de configuração ou recursos insuficientes.
-- **Exemplo prático:** É como começar uma corrida e desistir no meio do caminho.
+- **O que transmite:** Mostra o número de builds que foram interrompidos antes de concluir.
+- **Objetivo:** Garantir que os builds rodem até o fim sem cancelamentos inesperados.
+- **Exemplo prático:** No gráfico, vemos 0 builds abortados, o que significa que todos os builds executaram até o final sem serem interrompidos.
+![builds-abortados.png](img/builds-abortados.png)
 
 ---
 
 ### 4 - Fila de Execução
 
-- **O que transmite:** Mostra quantos jobs estão pendentes, bloqueados e quanto tempo esperam antes de iniciar.
-- **Objetivo:** Identificar gargalos na fila de builds.
-- **Exemplo prático:** É como uma fila no supermercado: se há muitos carrinhos esperando, o caixa está sobrecarregado.
+- **O que transmite:** Mostra se há jobs pendentes, bloqueados e quanto tempo eles esperam antes de iniciar.
+- **Objetivo:** Identificar gargalos na fila de builds e avaliar se o Jenkins está conseguindo atender rapidamente.
+- **Exemplo prático:** No gráfico, não houve jobs pendentes (0), nenhum bloqueado (0) e o tempo médio de espera foi praticamente 0 segundos (0.001s). Isso significa que os builds estão começando imediatamente, sem fila ou atraso.
+![fila-execucao.png](img/fila-execucao.png)
 
 ---
 
 ### 5 - Uso de CPU Jenkins
 
-- **O que transmite:** Percentual de uso da CPU do servidor e da JVM do Jenkins.
-- **Objetivo:** Avaliar se o servidor está sobrecarregado.
-- **Exemplo prático:** É como ver se o motor do carro está trabalhando leve (10%) ou no limite (90%).
+- **O que transmite:** Percentual de uso da CPU do servidor e da JVM do Jenkins, indicando se há sobrecarga.
+- **Objetivo:** Avaliar se o Jenkins está consumindo muitos recursos ou se o servidor está tranquilo.
+- **Exemplo prático:** No gráfico, o uso da CPU do sistema variou de 0% até no máximo 9%, e a JVM do Jenkins consumiu menos de 1%. Isso mostra que o servidor está trabalhando leve, sem risco de saturação.
+![uso-cpu-jenkins.png](img/uso-cpu-jenkins.png)
 
 ---
 
 ### 6 - Uso de Memória JVM
 
-- **O que transmite:** Percentual de memória heap e non-heap usada pela JVM.
-- **Objetivo:** Detectar risco de estouro de memória (OutOfMemory).
-- **Exemplo prático:** É como acompanhar a memória do celular: se está quase cheia, o sistema pode travar.
+- **O que transmite:** Percentual de memória heap (objetos da aplicação) e non-heap (estruturas internas da JVM) usada.
+- **Objetivo:** Detectar risco de estouro de memória (OutOfMemory) e avaliar se há espaço suficiente para builds e testes.
+- **Exemplo prático:** No gráfico, a heap está tranquila (7–10%), mas a non-heap está quase cheia (95–97%). É como acompanhar a memória do celular: os aplicativos ocupam pouco espaço, mas o sistema está usando quase toda a memória interna, o que pode levar a travamentos se não for monitorado.
+![uso-memoria-jvm.png](img/uso-memoria-jvm.png)
 
 ---
 
 ### 7 - Garbage Collection (GC)
 
-- **O que transmite:** Tempo gasto pelo Java em coletas de lixo (limpeza de memória).
-- **Objetivo:** Avaliar se o GC está impactando a performance.
-- **Exemplo prático:** É como parar várias vezes para arrumar a mesa. Se demora muito, atrapalha o trabalho.
+- **O que transmite:** Mostra quanto tempo o Java gasta em coletas de lixo, separando por tipos de memória (Young, Old, Concurrent).
+- **Objetivo:** Avaliar se o GC está impactando a performance do Jenkins.
+- **Exemplo prático:** No gráfico, o GC gastou 7,16s limpando objetos temporários (Young Generation), 1,22s em limpezas paralelas (Concurrent GC) e 0s em objetos antigos (Old Generation). Isso significa que a memória está sendo gerenciada de forma eficiente, sem pausas pesadas.
+![garbage-collection.png](img/garbage-collection.png)
 
 ---
 
