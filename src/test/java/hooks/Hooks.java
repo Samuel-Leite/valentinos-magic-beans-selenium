@@ -29,7 +29,7 @@ public class Hooks {
     @Before
     public void setUp(Scenario scenario) {
         this.scenario = scenario;
-        DriverFactory.getDriver();
+        DriverFactory.initDriver();
         Percy.init();
         log.info("TESTE INICIADO: {}", scenario.getName());
     }

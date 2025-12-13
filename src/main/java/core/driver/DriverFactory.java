@@ -9,10 +9,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 /**
- * Classe responsável por gerenciar a instância única do WebDriver.
+ * Classe responsável por gerenciar a instância do WebDriver.
  *
- * Utiliza o padrão Singleton para garantir que apenas uma instância do driver
- * seja criada durante a execução dos testes.
+ * Utiliza ThreadLocal para garantir que cada thread de execução
+ * (em testes paralelos) tenha sua própria instância de driver.
  *
  * O navegador é definido pelo parâmetro de sistema "browser"
  * (chrome | firefox).
@@ -20,19 +20,17 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 @Log4j2
 public class DriverFactory {
 
-    // Instância única do WebDriver
-    private static WebDriver driver;
+    // Cada thread terá sua própria instância de WebDriver
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     /**
-     * Retorna a instância atual do WebDriver.
+     * Inicializa o WebDriver da thread atual.
      * Caso ainda não exista, cria uma nova instância com base no parâmetro "browser".
-     *
-     * @return WebDriver instanciado
      */
-    public static WebDriver getDriver() {
-        if (driver == null) {
-            String browser = System.getProperty("browser");
-            boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
+    public static void initDriver() {
+        if (driver.get() == null) {
+            String browser = System.getProperty("browser", "chrome");
+            boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
 
             log.info("Inicializando navegador={} | headless={}", browser, headless);
 
@@ -44,7 +42,7 @@ public class DriverFactory {
                         firefoxOptions.addArguments("--headless");
                         firefoxOptions.addArguments("--window-size=1920,1080");
                     }
-                    driver = new FirefoxDriver(firefoxOptions);
+                    driver.set(new FirefoxDriver(firefoxOptions));
                     break;
 
                 case "chrome":
@@ -59,25 +57,33 @@ public class DriverFactory {
                     chromeOptions.addArguments("--disable-dev-shm-usage");
                     chromeOptions.addArguments("--disable-gpu");
                     chromeOptions.addArguments("--start-maximized");
-                    driver = new ChromeDriver(chromeOptions);
+                    driver.set(new ChromeDriver(chromeOptions));
                     break;
 
                 default:
                     throw new IllegalArgumentException("Navegador inválido: " + browser);
             }
         }
-        return driver;
     }
 
     /**
-     * Finaliza a instância atual do WebDriver.
+     * Retorna a instância atual do WebDriver da thread.
+     *
+     * @return WebDriver instanciado para a thread atual
+     */
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    /**
+     * Finaliza a instância atual do WebDriver da thread.
      * Fecha o navegador e limpa a referência para permitir nova criação futura.
      */
     public static void quitDriver() {
-        if (driver != null) {
+        if (driver.get() != null) {
             log.info("Encerrando navegador...");
-            driver.quit();
-            driver = null;
+            driver.get().quit();
+            driver.remove();
         }
     }
 }
