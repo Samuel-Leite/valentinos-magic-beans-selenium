@@ -78,25 +78,6 @@ public Object[][] scenarios() {
 ```
 
 - Quando `parallel = true`, os cenários definidos nos arquivos .feature podem ser executados em paralelo.
-- O nível de paralelismo é controlado pelo testng.xml através dos atributos parallel e thread-count.
-
-```xml
-<suite name="Suite" parallel="tests" thread-count="5">
-    <parameter name="environment" value="qa"/>
-    <parameter name="browser" value="chrome"/>
-    <parameter name="headless" value="false"/>
-    <parameter name="lighthouse" value="false"/>
-    <test name="Harvest of Quality">
-        <classes>
-            <class name="runner.Runner"/>
-        </classes>
-    </test>
-</suite>
-```
-
-- `parallel="none" thread-count="1"`: execução sequencial
-- `parallel="tests" thread-count="N"` execução paralela por suite/teste
-- `parallel="classes" ou "methods"` paralelismo por classe ou método
 
 ---
 
