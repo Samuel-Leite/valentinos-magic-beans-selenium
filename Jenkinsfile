@@ -34,9 +34,7 @@ pipeline {
         }
         stage('Allure Report') {
             steps {
-                allure([
-                    results: [[path: 'target/allure-results']]
-                ])
+                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
             }
         }
     }
