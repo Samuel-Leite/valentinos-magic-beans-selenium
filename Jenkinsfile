@@ -30,6 +30,11 @@ pipeline {
                     reportName: 'Harvest of Quality Report',
                     useWrapperFileDirectly: true
                 ])
+                allure([
+                        includeProperties: false,
+                        jdk: '',
+                        results: [[path: 'target/allure-results']]
+                ])
             }
         }
     }
