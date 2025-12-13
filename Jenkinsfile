@@ -31,8 +31,7 @@ pipeline {
                     useWrapperFileDirectly: true
                 ])
                 allure([
-                    results: [[path: 'target/allure-results']],
-                    reportBuildPolicy: 'ALWAYS'
+                    path: 'target/allure-results'
                 ])
             }
         }
