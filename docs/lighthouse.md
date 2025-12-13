@@ -23,6 +23,16 @@ A integração permite validar métricas de desempenho e boas práticas da aplic
 
 ---
 
+## ⚙️ Como executar o Lighthouse
+
+Precisa trocar a variável do lighthouse para 'true' no arquivo testng.xml:
+
+```Xml
+<parameter name="lighthouse" value="true"/> <!-- true ou false -->
+```
+
+---
+
 ## 📊 Indicadores do Lighthouse
 
 Os indicadores abaixo explicam como o Lighthouse avalia diferentes aspectos de qualidade de uma aplicação web:
