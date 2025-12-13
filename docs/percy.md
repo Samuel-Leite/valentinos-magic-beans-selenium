@@ -1,22 +1,7 @@
 # 📸 Integração com Percy
 
 Este projeto oferece suporte à captura de snapshots visuais com **Percy** durante a execução de testes.  
-A integração permite detectar alterações inesperadas na interface da aplicação e revisar visualmente o impacto de cada mudança.
-
----
-
-## 📘 Índice
-
-- [🎯 Propósito](#-propósito)
-- [⚙️ Como Funciona](#-como-funciona)
-- [🔐 Variáveis de Ambiente Necessárias](#-variáveis-de-ambiente-necessárias)
-- [📂 Estrutura do Projeto](#-estrutura-do-projeto)
-- [🛠️ Componentes Principais](#-componentes-principais)
-    - [`PercyService.ts`](#percyservicets)
-    - [LoginPage.ts](#loginpagets)
-    - [HomePage.ts](#homepagets)
-- [🧯 Solução de Problemas](#-solução-de-problemas)
-- [📄 Arquivos Fonte](#-arquivos-fonte)
+A integração permite detectar alterações inesperadas na interface da aplicação e revisar visualmente o impacto de cada mudança diretamente no **dashboard do Percy**.
 
 ---
 
@@ -25,40 +10,20 @@ A integração permite detectar alterações inesperadas na interface da aplica�
 - Capturar snapshots visuais durante o fluxo de testes automatizados
 - Detectar regressões visuais entre execuções
 - Integrar com o dashboard do Percy para revisão e aprovação de mudanças
-- Permitir controle condicional da captura via variável de ambiente
+- Permitir controle condicional da captura via variável de configuração
 
 ---
 
 ## ⚙️ Como Funciona
 
+- O teste automatizado abre a página desejada com Selenium WebDriver
+- A classe Percy inicializa o cliente oficial io.percy.selenium.Percy com o WebDriver atual
+- Durante o fluxo de testes, o método percySnapshot(name) é chamado para capturar a tela
+- O snapshot é enviado para o Percy Dashboard, onde pode ser comparado com execuções anteriores
+- Alterações visuais são destacadas para revisão e aprovação
+
 ---
-
-📂 Estrutura do Projeto
-```bash
-
-```
----
-
-## 🛠️ Componentes Principais
-
 
 #### 🎯 Propósito
 - Capturar imagens da interface durante o teste
 - Registrar logs de execução para rastreabilidade
-
-#### 🔑 Métodos Principais
-
-#### Uso
-
----
-
-## 🧯 Solução de Problemas
-
-|         Problema         |               Causa                    |                              Solução                |
-|--------------------------|----------------------------------------|-----------------------------------------------------|
-|         |      | |
-
---- 
-
-## 📄 Arquivos Fonte
-- [Validação com Percy]()

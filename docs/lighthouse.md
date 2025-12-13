@@ -1,21 +1,7 @@
 # 🚦 Integração com Lighthouse via BrowserStack
 
 Este projeto oferece suporte à execução de auditorias de performance com **Lighthouse** durante os testes automatizados.  
-A integração permite validar métricas de desempenho e boas práticas da aplicação em tempo real, sem a necessidade de abrir navegadores locais.
-
----
-
-## 📘 Índice
-
-- [🎯 Propósito](#-propósito)
-- [⚙️ Como Funciona](#-como-funciona)
-- [🔐 Variáveis de Ambiente Necessárias](#-variáveis-de-ambiente-necessárias)
-- [📂 Estrutura do Projeto](#-estrutura-do-projeto)
-- [🛠️ Componentes Principais](#-componentes-principais)
-    - [`lighthouseExecutor.ts`](#lighthouseexecutorts)
-    - [`login-lighthouse.spec.ts`](#login-lighthousespects)
-- [🧯 Solução de Problemas](#-solução-de-problemas)
-- [📄 Arquivos Fonte](#-arquivos-fonte)
+A integração permite validar métricas de desempenho e boas práticas da aplicação em tempo real, diretamente a partir da URL aberta pelo Selenium WebDriver.
 
 ---
 
@@ -23,13 +9,17 @@ A integração permite validar métricas de desempenho e boas práticas da aplic
 
 - Executar auditorias de performance com Lighthouse durante os testes automatizados
 - Validar métricas como FCP, LCP, TBT e CLS diretamente no fluxo de testes
-- Integrar com o protocolo `browserstack_executor` para execução remota
-- Automatizar validações com base em limites mínimos de qualidade
+- Gerar relatórios HTML para análise posterior
+- Garantir que cada execução de teste também avalie a experiência do usuário em termos de velocidade, estabilidade e acessibilidade
 
 ---
 
 ## ⚙️ Como Funciona
 
+- O teste automatizado abre a página desejada com Selenium WebDriver
+- A classe Lighthouse captura a URL atual do navegador
+- Se a propriedade -Dlighthouse=true estiver habilitada, o código dispara o Lighthouse CLI como processo externo. 
+- O relatório é gerado em formato HTML dentro da pasta target/lighthouse-reports.
 
 ---
 
@@ -64,42 +54,25 @@ Os indicadores abaixo explicam como o Lighthouse avalia diferentes aspectos de q
 
 ---
 
-## 📂 Estrutura do Projeto
-
-```bash
-
-```
-
----
-
 ## 🛠️ Componentes Principais
 
-#### 🎯 Propósito
-- Disparar auditorias de performance com o protocolo browserstack_executor
-- Validar métricas e categorias com base em limites definidos
-- Registrar logs de sucesso ou falha para análise
-
-#### 🔑 Métodos Principais
-
----
-
-#### 🎯 Propósito
-- Validar a performance da aplicação
-- Garantir que a tela inicial atenda aos critérios mínimos de qualidade
+- Execução via Selenium + Java: dispara auditorias após navegação automatizada
+- Controle por System Property: só roda se -Dlighthouse=true for definido
+- Detecção de SO: usa lighthouse em Linux/Mac e lighthouse.cmd no Windows
+- Relatórios HTML: salvos em target/lighthouse-reports/<nome>.html
+- Logs detalhados: saída do processo capturada e exibida via log4j
 
 ---
 
-#### 💻 Exemplo de Uso
+## 🎨 Como interpretar a pontuação
+- 0 a 49 (vermelho): ruim
+- 50 a 89 (laranja): precisa de melhorias
+- 90 a 100 (verde): bom
 
----
-
-## 🧯 Solução de Problemas
-
-| Problema                      | Causa | Solução                                              |
-|-------------------------------|-------|------------------------------------------------------|
-|  |       |   |
+Uma pontuação perfeita de 100 é rara e não esperada. Melhorias incrementais (ex.: de 99 para 100) exigem grandes otimizações.
 
 ---
 
 ## 📄 Arquivos Fonte
-- [Evidências do Lighthouse](target/lighthouse-reports)
+- [Documentação do Lighthouse](https://developer.chrome.com/docs/lighthouse/overview?hl=pt-br)
+- [Pontuação de desempenho do Lighthouse](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring?hl=pt-br)
