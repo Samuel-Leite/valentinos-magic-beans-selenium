@@ -30,6 +30,10 @@ pipeline {
                     reportName: 'Harvest of Quality Report',
                     useWrapperFileDirectly: true
                 ])
+            }
+        }
+        stage('Allure Report') {
+            steps {
                 allure([
                     results: [[path: 'target/allure-results']]
                 ])
