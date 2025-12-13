@@ -24,7 +24,7 @@ A integração permite detectar alterações inesperadas na interface da aplica�
 
 ---
 
-## ⚙️ Instruções para executar o Percy
+## ⚙️ Como executar o Percy
 
 - Inserir o token no terminal:
 ```Powershel
