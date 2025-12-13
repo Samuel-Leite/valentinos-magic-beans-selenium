@@ -31,10 +31,11 @@ pipeline {
                     useWrapperFileDirectly: true
                 ])
 
-                // Gerar Allure Report via CLI
-                sh '''
-                    allure generate target/allure-results --clean -o target/allure-report
-                '''
+                // Gerar Allure Report via CLI usando instalação configurada
+                script {
+                    def allureHome = tool 'ALLURE_HOME'  // nome que você configurou no Jenkins
+                    sh "${allureHome}/bin/allure generate target/allure-results --clean -o target/allure-report"
+                }
 
                 // Publicar Allure Report como HTML
                 publishHTML([
