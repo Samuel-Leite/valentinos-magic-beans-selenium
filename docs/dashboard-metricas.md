@@ -69,12 +69,20 @@ Este documento organiza todas as métricas citadas no Dashboard do Grafana, sepa
 
 ---
 
-## 🎯 Resumindo
+## 🎯 Resumindo os dados do dashboard
 As 7 métricas permitem responder perguntas essenciais:
 - **Performance:** Quanto tempo os builds levam? (Tempo de Execução, Waiting Duration)
+  - **Tempo de Execução dos Builds (Percentis):** Mostra quanto tempo os builds levam em média e nos casos extremos, por exemplo: a maioria termina em 24,8s, mas um caso raro levou 86s.
+  - **Waiting Duration (tempo de espera na fila):** Mede quanto tempo os jobs aguardam antes de iniciar, por exemplo: todos os builds esperaram praticamente 0s (0.001s), sem atrasos.
 - **Estabilidade:** Os builds estão falhando ou instáveis? (Instáveis, Abortados)
+  - **Builds Instáveis:** Conta quantos builds terminaram com status “instável”, por exemplo: valor 0 → nenhum build instável, todos confiáveis.
+  - **Builds Abortados:** Mede quantos builds foram interrompidos antes de terminar, por exemplo: valor 0 → nenhum build abortado, todos concluídos.
 - **Recursos:** O servidor aguenta a carga? (CPU, Memória, GC)
+  - **Uso de CPU (Sistema e JVM):** Percentual de uso da CPU do servidor e da JVM do Jenkins, por exemplo: CPU do sistema variou de 0% a 9%, JVM consumiu menos de 1% → servidor leve.
+  - **Uso de Memória (Heap e Non-Heap):** Percentual de memória usada pela JVM, por exemplo: Heap em 7–10% (tranquilo), Non-Heap em 95–97% (quase cheia, atenção).
+  - **Garbage Collection (GC):** Tempo gasto em limpezas de memória, por exemplo: 7,16s em objetos temporários (Young), 1,22s em limpezas paralelas (Concurrent), 0s em objetos antigos (Old) → eficiente, sem pausas pesadas.
 - **Eficiência:** Há gargalos na fila? (Fila de Execução)
+  - **Fila de Execução (Pending, Blocked, Waiting):** Mostra se há jobs esperando ou bloqueados, por exemplo: valores 0 → sem fila, builds iniciam imediatamente.
 
 ## 🔗 Links Úteis
 - [Construção do Dashboard](docs/grafana-dashboard.json)
