@@ -1,5 +1,6 @@
 package runner;
 
+import core.report.Report;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
@@ -31,5 +32,7 @@ public class Runner extends AbstractTestNGCucumberTests {
         System.setProperty("browser", browser);
         System.setProperty("headless", headless);
         System.setProperty("lighthouse", lighthouse);
+
+        new Report().setEnv();
     }
 }
