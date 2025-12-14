@@ -113,6 +113,8 @@ Com relação a variabilidade nos valores da pontuação de desempenho e das mé
 - Extensões de navegador que injetam JavaScript e adicionam/modificam solicitações de rede
 - Software antivírus
 
+Para obter resultado assertivo,  recomenda-se executar várias vezes, usar hardware estável, isolar fatores externos e considerar valores medianos em vez de execuções únicas.
+
 ---
 
 ## 📄 Arquivos Fonte
