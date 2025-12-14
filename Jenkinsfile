@@ -19,10 +19,8 @@ pipeline {
         }
         stage('Reports') {
 			steps {
-				publishHTML([
-                    reportDir: 'target/site/allure-maven-plugin',
-                    reportFiles: 'index.html',
-                    reportName: 'Allure Report'
+				allure([
+                    results: [[path: 'target/allure-results']]
                 ])
             }
         }
