@@ -14,15 +14,16 @@ pipeline {
         }
         stage('Test') {
 			steps {
-				sh 'mvn test -Denvironment=qa -Dbrowser=chrome -Dheadless=true -Dlighthouse=false'
+				sh 'mvn clean test -Denvironment=qa -Dbrowser=chrome -Dheadless=true -Dlighthouse=false'
             }
         }
-        stage('Reports') {
-			steps {
-				allure([
-                    results: [[path: 'allure-results']]
-                ])
-            }
+    }
+
+    post {
+		always {
+			allure([
+                path: 'allure-results'
+            ])
         }
     }
 }
