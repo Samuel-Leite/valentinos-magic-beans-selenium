@@ -14,35 +14,17 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn clean test allure:report allure:serve -Denvironment=qa -Dbrowser=chrome -Dheadless=false -Dlighthouse=false'
+                sh 'mvn clean test allure:report -Denvironment=qa -Dbrowser=chrome -Dheadless=false -Dlighthouse=false'
             }
         }
         stage('Reports') {
             steps {
-                junit '**/target/surefire-reports/*.xml'
-                archiveArtifacts artifacts: 'target/screenshots/**', fingerprint: true
-                publishHTML([
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: false,
-                    keepAll: false,
-                    reportDir: 'target',
-                    reportFiles: 'report.html',
-                    reportName: 'Harvest of Quality Report',
-                    useWrapperFileDirectly: true
-                ])
-
-                // Gerar Allure Report via CLI usando instalação configurada
-                script {
-                    def allureHome = tool 'ALLURE_HOME'  // nome que você configurou no Jenkins
-                    sh "${allureHome}/bin/allure generate target/allure-results --clean -o target/allure-report"
-                }
-
                 // Publicar Allure Report como HTML
                 publishHTML([
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
-                    reportDir: 'target/allure-report',
+                    reportDir: 'target/site/allure-maven-plugin',
                     reportFiles: 'index.html',
                     reportName: 'Allure Report'
                 ])
