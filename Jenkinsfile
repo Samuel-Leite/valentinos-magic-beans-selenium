@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn clean test allure:report -Denvironment=qa -Dbrowser=chrome -Dheadless=false -Dlighthouse=false'
+                sh 'mvn clean test -Denvironment=qa -Dbrowser=chrome -Dheadless=false -Dlighthouse=false'
             }
         }
         stage('Reports') {
