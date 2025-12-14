@@ -18,8 +18,12 @@ pipeline {
             }
         }
         stage('Reports') {
-            steps {
-				allure([results: [[path: 'allure-results']]])
+			steps {
+				publishAllureReport(
+                    allureReport: [
+                        path: 'allure-results'
+                    ]
+                )
             }
         }
     }
