@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Generate Allure Report') {
 			steps {
-				sh 'mvn allure:report'
+				sh 'mvn io.qameta.allure:allure-maven:report'
             }
         }
         stage('Reports') {
