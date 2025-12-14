@@ -17,6 +17,11 @@ pipeline {
 				sh 'mvn test -Denvironment=qa -Dbrowser=chrome -Dheadless=true -Dlighthouse=false'
             }
         }
+        stage('Generate Allure Report') {
+			steps {
+				sh 'mvn allure:report'
+            }
+        }
         stage('Reports') {
 			steps {
 				publishHTML([
