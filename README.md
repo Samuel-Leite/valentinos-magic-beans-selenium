@@ -22,13 +22,14 @@
 
 ## 📦 Requisitos
 - Selenium
-- Testng
+- TestNG
 - Java 11
 - Gherkin e Cucumber
 - Credenciais do Percy (teste visual)
 - Docker
 - Prometheus 
 - Grafana
+- Allure Report
 
 ## 🚀 Propósito
 Este projeto tem como objetivo validar funcionalidades da aplicação web [**Valentino's Magic Beans**](https://valentinos-magic-beans.click) através de testes automatizados robustos, rastreáveis e escaláveis, com foco em boas práticas de desenvolvimento e qualidade de código.
@@ -52,6 +53,7 @@ Este repositório contém uma suíte robusta de automação de testes de ponta a
 - Configuração estruturada com YAML para ambientes e credenciais
 - Exposição de métricas via Prometheus com visualização de métricas no dashboards Grafana
 - Execução dos testes na pipeline através do Jenkins
+- Relatórios com Allure
 
 ---
 
