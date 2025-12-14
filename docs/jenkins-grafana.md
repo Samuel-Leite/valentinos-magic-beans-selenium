@@ -31,7 +31,7 @@ Ele expõe métricas personalizadas das execuções de testes e as visualiza em 
 
 ### `Dockerfile`
 
-Constrói o container que executa os testes Playwright e expõe métricas.
+Constrói o container que executa os testes e expõe métricas.
 
 ```dockerfile
 # Jenkins LTS já vem com Java 11
@@ -162,7 +162,7 @@ docker-compose build
 docker-compose up -d
 ```
 
-### 🛑 Derrubar os containers
+### 🛑 Encerrar os containers
 ```bash
 docker-compose down
 ```
@@ -205,7 +205,7 @@ Deve acessar o seguinte path: Home > Nova tarefa > preencher nome > Pipeline > T
 Para configurar o publishHTML > 'Pipeline Syntax' > preencher as informações > Generate Pipeline Script > incluir no Jenkinsfile
 - Sample Step: publishHTML: Publish HTML reports
 - HTML directory to archive: report.html
-- Report title: Harvest of Quality Report
+- Report title: <titulo_relatorio>
 
 Após efetuar as etapas supracitadas poderá executar a pipeline.
 
