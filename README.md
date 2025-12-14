@@ -83,6 +83,24 @@ public Object[][] scenarios() {
 
 ---
 
+## Comandos para executar via Maven
+
+Com o prompt de comando na raiz do projeto, localizado o arquivo pom.xml, execute o comando abaixo para rodar os testes:
+
+```shell
+mvn clean test
+```
+
+## Comando para executar os testes com a evidência do Allure Report
+
+Com o prompt de comando na raiz do projeto, localizado o arquivo pom.xml, execute o comando abaixo para executar os testes e abrir em seguida o allure report em html:
+
+```shell
+mvn clean test allure:report allure:serve -Denvironment=qa -Dbrowser=chrome -Dheadless=false -Dlighthouse=false
+```
+
+---
+
 ## 🚦 Auditoria de Performance com Lighthouse
 
 Para detalhes completos como executar auditorias de performance em páginas web usando o Lighthouse integrado ao Selenium e TestNG com a linguagem Java, consulte o [Guia de Auditoria Lighthouse](docs/lighthouse.md).
