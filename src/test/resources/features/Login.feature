@@ -1,4 +1,3 @@
-
 # language: pt
 # charset: UTF-8
 Funcionalidade: Efetuar login na plataforma

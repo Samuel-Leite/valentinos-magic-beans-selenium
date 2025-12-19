@@ -44,12 +44,12 @@ mvn clean test allure:report allure:serve -Denvironment=qa -Dbrowser=chrome -Dhe
 Os indicadores abaixo explicam como o Lighthouse avalia diferentes aspectos de qualidade de uma aplicação web:
 
 - **Performance** ⚡  
-  Mede a velocidade e eficiência de carregamento da página.  
+  Mede a velocidade e eficiência de carregamento da página.
   Inclui métricas como *First Contentful Paint (FCP)*, *Largest Contentful Paint (LCP)*, *Total Blocking Time (TBT)* e *Cumulative Layout Shift (CLS)*.  
   **Em resumo:** indica o quão rápido e estável o site é para o usuário.
 
 - **Accessibility** ♿  
-  Avalia se o site é utilizável por pessoas com deficiência.  
+  Avalia se o site é utilizável por pessoas com deficiência.
   Checa contraste de cores, nomes de botões/links, estrutura de títulos e navegação por teclado.  
   **Em resumo:** mostra se o site é inclusivo e acessível para todos.
 
