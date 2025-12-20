@@ -2,6 +2,8 @@ package core.percy;
 
 import core.driver.DriverFactory;
 import org.openqa.selenium.WebDriver;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Percy {
 
@@ -23,18 +25,37 @@ public class Percy {
     public static void init() {
         WebDriver driver = DriverFactory.getDriver();
         if (instance == null) {
-            instance = new Percy(driver); // instancia a SUA classe
+            instance = new Percy(driver);
         }
     }
 
     /**
      * Captura um snapshot visual da página atual.
      *
-     * @param name Nome da captura (aparece no dashboard do Percy)
+     * @param name Nome da captura (aparece no dashboard do Percy).
+     *             Use nomes descritivos, como "Login Page" ou "Dashboard Admin".
      */
     public static void percySnapshot(String name) {
         if (instance != null) {
-            instance.percy.snapshot(name); // agora compila
+            instance.percy.snapshot(name);
+        }
+    }
+
+    /**
+     * Captura um snapshot visual da página atual e agrupa sob um caso de teste.
+     *
+     * @param name     Nome da captura (aparece no dashboard do Percy).
+     *                 Exemplo: "Login Page".
+     * @param testCase Nome do caso de teste para agrupar snapshots relacionados.
+     *                 Exemplo: "login scenario". Se não informado, o snapshot
+     *                 aparece no grupo padrão "Other".
+     */
+    public static void percySnapshot(String name, String testCase) {
+        if (instance != null) {
+            Map<String, Object> options = new HashMap<>();
+            options.put("testCase", testCase);
+
+            instance.percy.snapshot(name, options);
         }
     }
 }

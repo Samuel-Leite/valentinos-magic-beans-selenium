@@ -28,7 +28,7 @@ A integração permite detectar alterações inesperadas na interface da aplica�
 
 - Inserir o token no terminal:
 ```Powershel
-$env:PERCY_TOKEN=<seu-token>
+$env:PERCY_TOKEN="<seu-token>"
 ```
 
 - Comando para executar o percy:
