@@ -42,3 +42,15 @@ npx percy exec -- mvn test
 #### 🎯 Propósito
 - Capturar imagens da interface durante o teste
 - Registrar logs de execução para rastreabilidade
+
+---
+
+## 🔗 Links Úteis
+- [Percy Dashboard](https://percy.io/)
+- [Apresentação das funcionalidades](https://www.youtube.com/watch?v=XOlZ6y24wDQ)
+- [Como funciona a captura dos snapshot](https://www.browserstack.com/docs/percy/integrate/percy-sdk-workflow)
+- [Como funciona a baseline](https://www.browserstack.com/docs/percy/baseline-management/overview)
+- [Painel de resultado](https://www.browserstack.com/docs/percy/build-results/overview)
+- [Como lidar com dados dinâmicos](https://www.browserstack.com/docs/percy/stabilize-screenshots/overview)
+- [Ignorar áreas e impedir que sejam renderizadas](https://www.browserstack.com/docs/percy/advanced-snapshots/percy-css)
+- [Direcionar áreas específicas da UI para testes visuais focados](https://www.browserstack.com/docs/percy/set-regions/overview)
