@@ -27,7 +27,7 @@ public class LighthouseValidator {
 
             // Se a categoria não existir no JSON, apenas loga um aviso
             if (!cats.has(key)) {
-                log.warn("Categoria {} não encontrada no relatório Lighthouse.", key);
+                log.warn("Categoria '{}' não encontrada no relatório Lighthouse.", key);
                 continue;
             }
 
@@ -51,7 +51,7 @@ public class LighthouseValidator {
 
             // Se o audit não existir no JSON, apenas loga um aviso
             if (!auds.has(auditKey)) {
-                log.warn("Audit {} não encontrado no relatório Lighthouse.", auditKey);
+                log.warn("Audit '{}' não encontrado no relatório Lighthouse.", auditKey);
                 continue;
             }
 

@@ -23,7 +23,6 @@ public class Lighthouse {
             // Verifica se a execução do Lighthouse está habilitada via propriedade do sistema
             String runLighthouse = System.getProperty("lighthouse");
             if (!runLighthouse.equalsIgnoreCase("true")) {
-                log.info("Execução do Lighthouse desativada por configuração (lighthouse=false).");
                 return;
             }
 
