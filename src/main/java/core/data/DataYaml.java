@@ -112,7 +112,7 @@ public class DataYaml {
         try {
             File file = new File("./src/main/resources/conf/lighthouse.yml");
             Map<String, Object> maps = mapper.readValue(file, Map.class);
-            log.info("Configuração Lighthouse carregada com sucesso: {}", maps);
+            log.info("Configuração Lighthouse carregada com sucesso");
             return maps;
         } catch (IOException e) {
             log.error("Erro ao tentar ler o arquivo lighthouse.yml - {}", e.getMessage(), e);

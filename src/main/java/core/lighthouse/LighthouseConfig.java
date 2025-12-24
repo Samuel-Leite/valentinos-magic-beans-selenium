@@ -49,8 +49,16 @@ public class LighthouseConfig {
     private Map<String, Double> convertToDoubleMap(Map<String, Object> raw) {
         Map<String, Double> result = new HashMap<>();
         for (Map.Entry<String, Object> entry : raw.entrySet()) {
-            if (entry.getValue() instanceof Number) {
-                result.put(entry.getKey(), ((Number) entry.getValue()).doubleValue());
+            Object value = entry.getValue();
+            if (value instanceof Number) {
+                result.put(entry.getKey(), ((Number) value).doubleValue());
+            } else if (value instanceof String) {
+                try {
+                    String str = ((String) value).replace(",", ".");
+                    result.put(entry.getKey(), Double.parseDouble(str));
+                } catch (NumberFormatException e) {
+                    log.warn("Valor inválido para audit '{}': {}", entry.getKey(), value);
+                }
             }
         }
         return result;
