@@ -30,9 +30,9 @@ public class Screenshot {
             Files.createDirectories(dest.getParent());
             Files.copy(file.toPath(), dest, StandardCopyOption.REPLACE_EXISTING);
 
-            log.debug("Screenshot salvo em {}", dest);
+            log.debug("Screenshot salvo em '{}'", dest);
         } catch (Exception e) {
-            log.error("Falha ao capturar screenshot: {}", e.getMessage());
+            log.error("Falha ao capturar screenshot: '{}'", e.getMessage());
         }
     }
 }

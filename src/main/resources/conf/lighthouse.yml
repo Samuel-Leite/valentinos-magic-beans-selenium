@@ -1,0 +1,11 @@
+lighthouse:
+  categories:
+    performance: 0.6
+    accessibility: 0.8
+    best-practices: 0.85
+    seo: 0.6
+  audits:
+    first-contentful-paint: 3622,60     # ms
+    largest-contentful-paint: 7508,28   # ms
+    cumulative-layout-shift: 0.1
+    total-blocking-time: 50             # ms

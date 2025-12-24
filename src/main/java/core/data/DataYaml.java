@@ -85,4 +85,38 @@ public class DataYaml {
         Map<String, Object> maps = mapper.readValue(getYamlConfFile(), Map.class);
         return (String) maps.get("urlBase");
     }
+
+    /**
+     * Lê o arquivo YAML de configuração do Lighthouse e retorna os valores como Map.
+     *
+     * Estrutura esperada no YAML:
+     * lighthouse:
+     *   categories:
+     *     performance: 0.9
+     *     accessibility: 0.8
+     *     best-practices: 0.85
+     *     seo: 0.9
+     *     pwa: 0.5
+     *   audits:
+     *     first-contentful-paint: 2000
+     *     largest-contentful-paint: 2500
+     *     cumulative-layout-shift: 0.1
+     *
+     * @return Mapa com os valores configurados
+     * @throws Exception Caso ocorra erro ao ler o arquivo
+     */
+    @SneakyThrows
+    public static Map<String, Object> getLighthouseConfig() {
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+        mapper.findAndRegisterModules();
+        try {
+            File file = new File("./src/main/resources/conf/lighthouse.yml");
+            Map<String, Object> maps = mapper.readValue(file, Map.class);
+            log.info("Configuração Lighthouse carregada com sucesso");
+            return maps;
+        } catch (IOException e) {
+            log.error("Erro ao tentar ler o arquivo lighthouse.yml - {}", e.getMessage(), e);
+            throw new Exception(e);
+        }
+    }
 }
