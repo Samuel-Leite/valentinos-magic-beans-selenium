@@ -48,7 +48,4 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g lighthouse @percy/cli
 
-# Corrige PATH para incluir binários instalados via npm
-ENV PATH=$PATH:/usr/local/bin
-
 USER jenkins

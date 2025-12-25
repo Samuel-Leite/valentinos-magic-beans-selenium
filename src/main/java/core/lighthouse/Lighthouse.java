@@ -22,7 +22,7 @@ public class Lighthouse {
         try {
             // Verifica se a execução do Lighthouse está habilitada via propriedade do sistema
             String runLighthouse = System.getProperty("lighthouse");
-            if (!"true".equalsIgnoreCase(runLighthouse)) {
+            if (!runLighthouse.equalsIgnoreCase("true")) {
                 return;
             }
 
@@ -33,24 +33,15 @@ public class Lighthouse {
 
             // Cria diretório para armazenar relatórios, se não existir
             File reportsDir = new File("target/lighthouse-reports");
-            if (!reportsDir.exists()) {
-                boolean created = reportsDir.mkdirs();
-                log.debug("Diretório criado: {} -> {}", reportsDir.getPath(), created);
-            }
+            if (!reportsDir.exists()) reportsDir.mkdirs();
 
             // Define caminhos para os relatórios HTML e JSON
             String reportPathHtml = new File(reportsDir, reportName).getPath();
-            String reportPathJson = reportPathHtml.replace(".html", ".json");
+            String reportPathJson = reportPathHtml.replace(".html", ".report.json");
 
             // Determina o comando correto do Lighthouse conforme o sistema operacional
             String os = System.getProperty("os.name").toLowerCase();
-            String lighthouseCmd;
-            if (os.contains("win")) {
-                lighthouseCmd = "lighthouse.cmd";
-            } else {
-                // Usa caminho absoluto no Linux para evitar "No such file or directory"
-                lighthouseCmd = "/usr/local/bin/lighthouse";
-            }
+            String lighthouseCmd = os.contains("win") ? "lighthouse.cmd" : "lighthouse";
 
             // Monta o comando para executar o Lighthouse em modo headless
             String command = String.format(
@@ -62,10 +53,7 @@ public class Lighthouse {
 
             // Executa o comando Lighthouse via Runtime
             Process process = Runtime.getRuntime().exec(command);
-            int exitCode = process.waitFor();
-            if (exitCode != 0) {
-                throw new RuntimeException("Lighthouse terminou com código de saída: " + exitCode);
-            }
+            process.waitFor();
             log.info("Relatórios Lighthouse gerados em: {} e {}", reportPathHtml, reportPathJson);
 
             // Carrega thresholds definidos no arquivo YAML (categorias e audits)
@@ -73,9 +61,8 @@ public class Lighthouse {
 
             // Lê o relatório JSON gerado pelo Lighthouse
             File jsonFile = new File(reportPathJson);
-            if (!jsonFile.exists()) {
+            if (!jsonFile.exists())
                 throw new IllegalStateException("Arquivo JSON não encontrado: " + jsonFile.getPath());
-            }
 
             String json = new String(Files.readAllBytes(jsonFile.toPath()));
             JsonObject root = JsonParser.parseString(json).getAsJsonObject();
