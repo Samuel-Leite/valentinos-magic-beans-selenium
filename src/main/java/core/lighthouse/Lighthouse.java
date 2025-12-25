@@ -33,7 +33,10 @@ public class Lighthouse {
 
             // Cria diretório para armazenar relatórios, se não existir
             File reportsDir = new File("target/lighthouse-reports");
-            if (!reportsDir.exists()) reportsDir.mkdirs();
+            if (!reportsDir.exists()) {
+                boolean created = reportsDir.mkdirs();
+                log.debug("Diretório criado: {} -> {}", reportsDir.getPath(), created);
+            }
 
             // Define caminhos para os relatórios HTML e JSON
             String reportPathHtml = new File(reportsDir, reportName).getPath();
