@@ -17,6 +17,25 @@ pipeline {
                 sh 'mvn test -Denvironment=qa -Dbrowser=chrome -Dheadless=true -Dlighthouse=true'
             }
         }
+        stage('Lighthouse Audit') {
+            steps {
+                // Executa Lighthouse diretamente via CLI
+                sh '''
+                    lighthouse https://valentinos-magic-beans.click/ \
+                      --output html --output json \
+                      --output-path=target/lighthouse-reports/lighthouse-home.html \
+                      --quiet --chrome-flags="--headless"
+                '''
+            }
+        }
+        stage('Percy Visual Tests') {
+            steps {
+                // Usa credencial do Jenkins para injetar o token do Percy
+                withCredentials([string(credentialsId: 'PERCY_TOKEN', variable: 'PERCY_TOKEN')]) {
+                    sh 'percy exec -- mvn test -Denvironment=qa -Dbrowser=chrome -Dheadless=true'
+                }
+            }
+        }
         stage('Reports') {
             steps {
                 junit '**/target/surefire-reports/*.xml'
