@@ -22,7 +22,7 @@ public class Lighthouse {
         try {
             // Verifica se a execução do Lighthouse está habilitada via propriedade do sistema
             String runLighthouse = System.getProperty("lighthouse");
-            if (!runLighthouse.equalsIgnoreCase("true")) {
+            if (!"true".equalsIgnoreCase(runLighthouse)) {
                 return;
             }
 
@@ -59,7 +59,10 @@ public class Lighthouse {
 
             // Executa o comando Lighthouse via Runtime
             Process process = Runtime.getRuntime().exec(command);
-            process.waitFor();
+            int exitCode = process.waitFor();
+            if (exitCode != 0) {
+                throw new RuntimeException("Lighthouse terminou com código de saída: " + exitCode);
+            }
             log.info("Relatórios Lighthouse gerados em: {} e {}", reportPathHtml, reportPathJson);
 
             // Carrega thresholds definidos no arquivo YAML (categorias e audits)
@@ -67,8 +70,9 @@ public class Lighthouse {
 
             // Lê o relatório JSON gerado pelo Lighthouse
             File jsonFile = new File(reportPathJson);
-            if (!jsonFile.exists())
+            if (!jsonFile.exists()) {
                 throw new IllegalStateException("Arquivo JSON não encontrado: " + jsonFile.getPath());
+            }
 
             String json = new String(Files.readAllBytes(jsonFile.toPath()));
             JsonObject root = JsonParser.parseString(json).getAsJsonObject();
