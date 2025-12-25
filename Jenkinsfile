@@ -9,7 +9,6 @@ pipeline {
         }
         stage('Build') {
             steps {
-                deleteDir()
                 sh 'mvn clean install -DskipTests'
             }
         }
