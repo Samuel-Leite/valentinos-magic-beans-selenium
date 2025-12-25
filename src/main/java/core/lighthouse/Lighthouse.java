@@ -41,7 +41,13 @@ public class Lighthouse {
 
             // Determina o comando correto do Lighthouse conforme o sistema operacional
             String os = System.getProperty("os.name").toLowerCase();
-            String lighthouseCmd = os.contains("win") ? "lighthouse.cmd" : "lighthouse";
+            String lighthouseCmd;
+            if (os.contains("win")) {
+                lighthouseCmd = "lighthouse.cmd";
+            } else {
+                // Usa caminho absoluto no Linux para evitar "No such file or directory"
+                lighthouseCmd = "/usr/local/bin/lighthouse";
+            }
 
             // Monta o comando para executar o Lighthouse em modo headless
             String command = String.format(
