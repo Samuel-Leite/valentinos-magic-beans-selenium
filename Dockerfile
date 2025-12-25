@@ -43,9 +43,4 @@ RUN wget -q https://github.com/mozilla/geckodriver/releases/download/${GECKO_VER
     && rm geckodriver-${GECKO_VERSION}-linux64.tar.gz \
     && chmod +x /usr/local/bin/geckodriver
 
-# Instala Node.js + Lighthouse + Percy CLI
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install -g lighthouse @percy/cli
-
 USER jenkins
