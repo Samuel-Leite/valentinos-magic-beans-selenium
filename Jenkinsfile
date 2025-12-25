@@ -9,6 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                deleteDir()
                 sh 'mvn clean install -DskipTests'
             }
         }
@@ -20,6 +21,7 @@ pipeline {
         stage('Lighthouse Audit') {
             steps {
                 sh '''
+                    mkdir -p target/lighthouse-reports
                     lighthouse https://valentinos-magic-beans.click/ \
                       --output html --output json \
                       --output-path=target/lighthouse-reports/lighthouse-login.html \
