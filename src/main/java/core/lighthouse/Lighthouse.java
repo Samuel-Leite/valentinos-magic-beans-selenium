@@ -37,7 +37,7 @@ public class Lighthouse {
 
             // Define caminhos para os relatórios HTML e JSON
             String reportPathHtml = new File(reportsDir, reportName).getPath();
-            String reportPathJson = reportPathHtml.replace(".html", ".report.json");
+            String reportPathJson = reportPathHtml.replace(".html", ".json");
 
             // Determina o comando correto do Lighthouse conforme o sistema operacional
             String os = System.getProperty("os.name").toLowerCase();
