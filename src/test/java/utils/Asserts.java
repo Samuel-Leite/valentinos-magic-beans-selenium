@@ -105,7 +105,7 @@ public class Asserts {
      * @param color   Cor em RGBA ou HEX (se null usa azul padrão)
      */
     public static void highlightElement(WebDriver driver, WebElement element, String color) {
-        String env = System.getProperty("env", "qa"); // default qa
+        String env = System.getProperty("env"); // default qa
         log.info("Carregando o highlight no elemento do ambiente de {}", env);
 
         try {
