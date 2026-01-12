@@ -49,7 +49,7 @@ Os indicadores abaixo explicam como o Lighthouse avalia diferentes aspectos de q
   **Em resumo:** indica o quão rápido e estável o site é para o usuário.
 
 - **Accessibility** ♿  
-  Avalia se o site é utilizável por pessoas com deficiência.
+  Avalia se o site é inclusivo e acessível para o usuário.
   Checa contraste de cores, nomes de botões/links, estrutura de títulos e navegação por teclado.  
   **Em resumo:** mostra se o site é inclusivo e acessível para todos.
 
@@ -62,11 +62,6 @@ Os indicadores abaixo explicam como o Lighthouse avalia diferentes aspectos de q
   Mede se o site está otimizado para aparecer em buscadores como Google.  
   Checa indexação, meta tags e recomendações básicas de SEO.  
   **Em resumo:** indica se o site tem boas chances de ser encontrado em pesquisas.
-
-- **PWA (Progressive Web App)** 📱  
-  Avalia se o site pode funcionar como um aplicativo instalável.  
-  Checa manifest.json, service worker, splash screen e configuração de tema.  
-  **Em resumo:** mostra se o site pode ser usado como um app no celular ou desktop.
 
 ### 🎯 Pontuação dos resultados:
 
@@ -96,13 +91,6 @@ As pontuações são codificadas por cores:
 - Logs detalhados: saída do processo capturada e exibida via log4j
 
 ---
-
-## 🎨 Como interpretar a pontuação
-- 0 a 49 (vermelho): ruim
-- 50 a 89 (laranja): precisa de melhorias
-- 90 a 100 (verde): bom
-
-Uma pontuação perfeita de 100 é rara e não esperada. Melhorias incrementais (ex.: de 99 para 100) exigem grandes otimizações.
 
 ### Observação
 

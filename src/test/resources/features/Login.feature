@@ -7,5 +7,5 @@ Funcionalidade: Efetuar login na plataforma
   @wip
   Cenario: Executar login com credenciais validas
     Dado que acesse a pagina de login
-    Quando informar as credencias validas
+    Quando informar as credenciais validas
     Entao sera efetuado o login com sucesso

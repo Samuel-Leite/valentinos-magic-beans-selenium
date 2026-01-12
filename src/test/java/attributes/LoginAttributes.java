@@ -8,9 +8,9 @@ public class LoginAttributes extends BasePage {
 
     @FindBy(css = "[data-test-id='header-login-button-desktop']")
     public WebElement btnLogin;
-    @FindBy(css = "[data-test-id='login-email-input']")
+    @FindBy(name = "email")
     public WebElement txtEmail;
-    @FindBy(css = "[data-test-id='login-password-input']")
+    @FindBy(id = "password")
     public WebElement txtPassword;
     @FindBy(css = "[data-test-id='login-submit-button']")
     public WebElement btnSubmit;

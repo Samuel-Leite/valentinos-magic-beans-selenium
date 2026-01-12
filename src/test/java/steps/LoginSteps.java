@@ -3,10 +3,12 @@ package steps;
 import core.data.DataYaml;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Quando;
+import lombok.extern.log4j.Log4j2;
 import pages.LoginPage;
 
 import java.util.LinkedHashMap;
 
+@Log4j2
 public class LoginSteps {
 
     LinkedHashMap<String, String> credenciais = DataYaml.getMapYamlValues("credencial", "usuario_valido");
@@ -17,8 +19,8 @@ public class LoginSteps {
         loginPage.acessaAplicacao();
     }
 
-    @Quando("informar as credencias validas")
-    public void informarAsCredenciasValidas() {
+    @Quando("informar as credenciais validas")
+    public void informarAsCredenciaisValidas() {
         loginPage.realizarLogin(credenciais.get("email"), credenciais.get("password"));
     }
 }
