@@ -92,13 +92,6 @@ As pontuações são codificadas por cores:
 
 ---
 
-## 🎨 Como interpretar a pontuação
-- 0 a 49 (vermelho): ruim
-- 50 a 89 (laranja): precisa de melhorias
-- 90 a 100 (verde): bom
-
-Uma pontuação perfeita de 100 é rara e não esperada. Melhorias incrementais (ex.: de 99 para 100) exigem grandes otimizações.
-
 ### Observação
 
 Com relação a variabilidade nos valores da pontuação de desempenho e das métricas não ocorre por conta do Lighthouse, geralmente acontece devido a alterações nas condições subjacentes. Problemas comuns incluem:
