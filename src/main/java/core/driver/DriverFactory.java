@@ -3,6 +3,7 @@ package core.driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -16,12 +17,15 @@ import org.openqa.selenium.firefox.FirefoxOptions;
  *
  * O navegador é definido pelo parâmetro de sistema "browser"
  * (chrome | firefox).
+ *
+ * Benefício: centraliza a criação e finalização do driver,
+ * facilitando execução em diferentes ambientes (local, CI/CD).
  */
 @Log4j2
 public class DriverFactory {
 
     // Cada thread terá sua própria instância de WebDriver
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     /**
      * Inicializa o WebDriver da thread atual.
@@ -81,7 +85,8 @@ public class DriverFactory {
      */
     public static void quitDriver() {
         if (driver.get() != null) {
-            log.info("Encerrando navegador...");
+            log.info("Encerrando navegador e limpando cookies...");
+            driver.get().manage().deleteAllCookies();
             driver.get().quit();
             driver.remove();
         }

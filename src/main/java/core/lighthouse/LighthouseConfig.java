@@ -6,42 +6,38 @@ import lombok.extern.log4j.Log4j2;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Classe responsável por carregar thresholds do Lighthouse a partir do YAML.
+ *
+ * - Categorias principais (performance, accessibility, etc.)
+ * - Métricas específicas (FCP, LCP, CLS, TBT, etc.)
+ */
 @Log4j2
 public class LighthouseConfig {
 
-    // Mapa com os thresholds das categorias principais (performance, accessibility, etc.)
     private final Map<String, Double> categories;
-
-    // Mapa com os thresholds dos audits específicos (FCP, LCP, CLS, TBT, etc.)
     private final Map<String, Double> audits;
 
     /**
-     * Construtor da classe.
-     * Carrega as configurações do arquivo YAML usando DataYaml
-     * e converte os valores para Double, armazenando em dois mapas:
-     * - categories: thresholds das categorias principais
-     * - audits: thresholds das métricas específicas
+     * Construtor: carrega configuração do YAML e converte valores para Double.
      */
     public LighthouseConfig() {
-        // Carrega configuração completa do YAML
         Map<String, Object> config = DataYaml.getLighthouseConfig();
 
-        // Extrai e converte thresholds das categorias
-        Map<String, Object> categoriesRaw = (Map<String, Object>) ((Map<String, Object>) config.get("lighthouse")).get("categories");
+        Map<String, Object> categoriesRaw =
+                (Map<String, Object>) ((Map<String, Object>) config.get("lighthouse")).get("categories");
         categories = convertToDoubleMap(categoriesRaw);
 
-        // Extrai e converte thresholds dos audits
-        Map<String, Object> auditsRaw = (Map<String, Object>) ((Map<String, Object>) config.get("lighthouse")).get("audits");
+        Map<String, Object> auditsRaw =
+                (Map<String, Object>) ((Map<String, Object>) config.get("lighthouse")).get("audits");
         audits = convertToDoubleMap(auditsRaw);
 
-        // Loga os thresholds carregados para conferência
         log.info("Thresholds carregados - Categorias: {}", categories);
         log.info("Thresholds carregados - Audits: {}", audits);
     }
 
     /**
-     * Converte um mapa de valores genéricos (Object) para Double.
-     * Apenas valores que são instâncias de Number são aceitos.
+     * Converte valores genéricos para Double.
      *
      * @param raw mapa original carregado do YAML
      * @return mapa convertido com valores Double
@@ -54,10 +50,9 @@ public class LighthouseConfig {
                 result.put(entry.getKey(), ((Number) value).doubleValue());
             } else if (value instanceof String) {
                 try {
-                    String str = ((String) value).replace(",", ".");
-                    result.put(entry.getKey(), Double.parseDouble(str));
+                    result.put(entry.getKey(), Double.parseDouble(((String) value).replace(",", ".")));
                 } catch (NumberFormatException e) {
-                    log.warn("Valor inválido para audit '{}': {}", entry.getKey(), value);
+                    log.warn("Valor inválido para '{}': {}", entry.getKey(), value);
                 }
             }
         }

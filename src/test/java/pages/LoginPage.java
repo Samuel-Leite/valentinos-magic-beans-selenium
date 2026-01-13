@@ -15,14 +15,12 @@ import static utils.Asserts.verifyElementIsClickable;
  */
 public class LoginPage extends LoginAttributes {
 
-    // URL base da aplicação, carregada a partir do arquivo YAML de configuração
-    private final String url = DataYaml.getUrlBase();
-
     /**
      * Acessa a aplicação utilizando a URL base definida para o ambiente.
      */
     public void acessaAplicacao() {
-        driver.get(url);
+        String urlBase = DataYaml.getUrlBase();
+        navigateTo(urlBase);
         percySnapshot("Página de Login");
     }
 
