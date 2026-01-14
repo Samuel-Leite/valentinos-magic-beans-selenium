@@ -10,7 +10,6 @@ import static utils.Asserts.verifyElementIsClickable;
 
 /**
  * Page Object da página de Login.
- *
  * Utiliza os elementos definidos em {@link LoginAttributes}.
  */
 public class LoginPage extends LoginAttributes {

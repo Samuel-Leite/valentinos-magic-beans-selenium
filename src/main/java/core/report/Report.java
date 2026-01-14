@@ -15,7 +15,6 @@ import java.io.File;
 /**
  * Classe responsável por gerar o arquivo environment.xml
  * utilizado pelo Allure Report.
- *
  * Benefício: registra variáveis de ambiente da execução
  * (browser, ambiente, SO, etc.) para consulta nos relatórios.
  */

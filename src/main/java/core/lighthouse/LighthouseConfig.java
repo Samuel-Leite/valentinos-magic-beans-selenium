@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**
  * Classe responsável por carregar thresholds do Lighthouse a partir do YAML.
- *
  * - Categorias principais (performance, accessibility, etc.)
  * - Métricas específicas (FCP, LCP, CLS, TBT, etc.)
  */

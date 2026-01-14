@@ -11,7 +11,6 @@ import java.nio.file.Files;
 
 /**
  * Classe responsável por executar o Lighthouse na URL atual do WebDriver.
- *
  * - Gera relatórios HTML e JSON.
  * - Valida os resultados contra thresholds definidos no YAML.
  */

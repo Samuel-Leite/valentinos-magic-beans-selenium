@@ -3,9 +3,9 @@ package pages;
 import attributes.HomeAttributes;
 
 import static core.lighthouse.Lighthouse.runLighthouse;
+import static core.percy.Percy.percySnapshot;
 import static utils.Actions.*;
 import static utils.Asserts.*;
-import static core.percy.Percy.percySnapshot;
 
 /**
  * Page Object da página inicial (Home).
@@ -27,7 +27,6 @@ public class HomePage extends HomeAttributes {
 
     /**
      * Realiza o logout do usuário.
-     *
      */
     public void realizarLogout() {
         verifyElementIsClickable(btnUserMenu);

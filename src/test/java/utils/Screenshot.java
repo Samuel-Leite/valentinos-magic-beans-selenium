@@ -14,7 +14,6 @@ import java.nio.file.StandardCopyOption;
 
 /**
  * Classe utilitária para captura de screenshots.
- *
  * - Anexa a imagem ao relatório do Cucumber.
  * - Salva a imagem em disco para consulta posterior.
  */

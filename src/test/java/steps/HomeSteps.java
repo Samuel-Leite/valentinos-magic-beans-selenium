@@ -8,7 +8,7 @@ public class HomeSteps {
     HomePage homePage = new HomePage();
 
     @Entao("sera efetuado o login com sucesso")
-    public void seraEfetuadoOLoginComSucesso(){
+    public void seraEfetuadoOLoginComSucesso() {
         homePage.validarLoginSucesso();
         homePage.realizarLogout();
     }

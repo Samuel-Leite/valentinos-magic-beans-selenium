@@ -2,15 +2,14 @@ package core.percy;
 
 import core.driver.DriverFactory;
 import org.openqa.selenium.WebDriver;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Wrapper para o Percy oficial.
- *
  * Responsável por inicializar e capturar snapshots visuais
  * durante a execução dos testes.
- *
  * Benefício: centraliza o uso do Percy, evitando duplicação de código.
  */
 public class Percy {
