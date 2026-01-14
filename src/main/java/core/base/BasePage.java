@@ -33,15 +33,6 @@ public abstract class BasePage {
     }
 
     /**
-     * Retorna a instância atual do WebDriver.
-     *
-     * @return WebDriver em uso
-     */
-    protected WebDriver getDriver() {
-        return driver;
-    }
-
-    /**
      * Navega para uma URL específica.
      *
      * @param url endereço da página
