@@ -1,3 +1,6 @@
 usuario_valido:
   email: "francisco-palheta@uorak.com"
   password: "Cafe1234"
+usuario_invalido:
+  email: "admin@beans.com"
+  password: "Cafe@1234"

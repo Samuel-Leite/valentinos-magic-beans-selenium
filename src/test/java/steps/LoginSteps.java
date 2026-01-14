@@ -11,7 +11,6 @@ import java.util.LinkedHashMap;
 @Log4j2
 public class LoginSteps {
 
-    LinkedHashMap<String, String> credenciais = DataYaml.getMapYamlValues("credencial", "usuario_valido");
     LoginPage loginPage = new LoginPage();
 
     @Dado("^que acesse a pagina de login$")
@@ -19,8 +18,13 @@ public class LoginSteps {
         loginPage.acessaAplicacao();
     }
 
-    @Quando("informar as credenciais validas")
-    public void informarAsCredenciaisValidas() {
-        loginPage.realizarLogin(credenciais.get("email"), credenciais.get("password"));
+    @Quando("informar as credenciais {string}")
+    public void informarAsCredenciais(String tipoUsuario) {
+        LinkedHashMap<String, String> credenciais = DataYaml.getMapYamlValues("credencial", tipoUsuario);
+
+        loginPage.realizarLogin(
+                credenciais.get("email"),
+                credenciais.get("password")
+        );
     }
 }
