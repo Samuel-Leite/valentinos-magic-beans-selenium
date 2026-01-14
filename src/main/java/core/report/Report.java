@@ -3,7 +3,6 @@ package core.report;
 import com.google.common.collect.ImmutableMap;
 import lombok.extern.log4j.Log4j2;
 
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
@@ -13,11 +12,17 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 
+/**
+ * Classe responsável por gerar o arquivo environment.xml
+ * utilizado pelo Allure Report.
+ * Benefício: registra variáveis de ambiente da execução
+ * (browser, ambiente, SO, etc.) para consulta nos relatórios.
+ */
 @Log4j2
 public class Report {
 
     /**
-     * Cria o arquivo environment.xml com as variáveis do Runner
+     * Cria o arquivo environment.xml com as variáveis do Runner.
      */
     public void setEnv() {
         // Diretório padrão do Allure
@@ -39,10 +44,12 @@ public class Report {
         writeEnvironmentFile(envVars, resultsDir + "/");
     }
 
+    /**
+     * Escreve o arquivo environment.xml com os valores fornecidos.
+     */
     private static void writeEnvironmentFile(ImmutableMap<String, String> environmentValuesSet, String customResultsPath) {
         try {
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            var docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             var doc = docBuilder.newDocument();
             var environment = doc.createElement("environment");
             doc.appendChild(environment);
@@ -62,13 +69,12 @@ public class Report {
             DOMSource source = new DOMSource(doc);
 
             File allureResultsDir = new File(customResultsPath);
-            if (!allureResultsDir.exists()) {
-                allureResultsDir.mkdirs();
-            }
+            if (!allureResultsDir.exists()) allureResultsDir.mkdirs();
 
             StreamResult result = new StreamResult(new File(customResultsPath + "environment.xml"));
             transformer.transform(source, result);
-            log.info("Variaveis da automação salvo no Allure Report em {}", customResultsPath);
+
+            log.info("Variáveis da automação salvas no Allure Report em {}", customResultsPath);
         } catch (ParserConfigurationException | TransformerException e) {
             log.error("Erro ao escrever o arquivo environment.xml", e);
         }

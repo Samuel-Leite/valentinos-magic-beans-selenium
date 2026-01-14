@@ -12,9 +12,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+/**
+ * Classe utilitária para captura de screenshots.
+ * - Anexa a imagem ao relatório do Cucumber.
+ * - Salva a imagem em disco para consulta posterior.
+ */
 @Log4j2
 public class Screenshot {
 
+    /**
+     * Captura e salva um screenshot da página atual.
+     *
+     * @param scenario Cenário do Cucumber para anexar a evidência
+     */
     public static void takeScreenshot(Scenario scenario) {
         try {
             // Anexa ao relatório
@@ -30,9 +40,9 @@ public class Screenshot {
             Files.createDirectories(dest.getParent());
             Files.copy(file.toPath(), dest, StandardCopyOption.REPLACE_EXISTING);
 
-            log.debug("Screenshot salvo em '{}'", dest);
+            log.info("Screenshot salvo em '{}'", dest);
         } catch (Exception e) {
-            log.error("Falha ao capturar screenshot: '{}'", e.getMessage());
+            log.error("Falha ao capturar screenshot: {}", e.getMessage());
         }
     }
 }

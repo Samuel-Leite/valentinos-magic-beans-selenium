@@ -24,7 +24,6 @@ public class Hooks {
 
     /**
      * Executado antes de cada cenário.
-     *
      */
     @Before
     public void setUp(Scenario scenario) {
@@ -36,7 +35,6 @@ public class Hooks {
 
     /**
      * Executado depois de cada step.
-     *
      */
     @AfterStep
     public void afterStep(Scenario scenario) {
@@ -45,7 +43,6 @@ public class Hooks {
 
     /**
      * Executado após cada cenário.
-     *
      */
     @After
     public void tearDown() {
