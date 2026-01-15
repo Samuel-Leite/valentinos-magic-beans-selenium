@@ -51,9 +51,8 @@ public class Asserts {
      * Verifica se um elemento está visível na tela.
      *
      * @param element Elemento WebElement a ser verificado
-     * @return true se o elemento estiver visível, false caso contrário
      */
-    public static boolean verifyElementIsVisible(WebElement element) {
+    public static void verifyElementIsVisible(WebElement element) {
         WebDriver driver = DriverFactory.getDriver();
         int maxAttempts = 3;
         boolean isVisible = false;
@@ -75,7 +74,6 @@ public class Asserts {
                 }
             }
         }
-        return isVisible;
     }
 
     /**
