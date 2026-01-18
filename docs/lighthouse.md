@@ -9,7 +9,7 @@ A integração permite validar métricas de desempenho e boas práticas da aplic
 
 - Executar auditorias de performance com Lighthouse durante os testes automatizados
 - Validar métricas como FCP, LCP, TBT e CLS diretamente no fluxo de testes
-- Gerar relatórios HTML para análise posterior
+- Gerar relatórios **HTML** (para análise visual) e **JSON** (para validação automática)
 - Garantir que cada execução de teste também avalie a experiência do usuário em termos de velocidade, estabilidade e acessibilidade
 
 ---
@@ -17,24 +17,26 @@ A integração permite validar métricas de desempenho e boas práticas da aplic
 ## ⚙️ Como Funciona
 
 - O teste automatizado abre a página desejada com Selenium WebDriver
-- A classe Lighthouse captura a URL atual do navegador
-- Se a propriedade `-Dlighthouse=true` estiver habilitada, o código dispara o Lighthouse CLI como processo externo. 
-- O relatório é gerado em formato HTML dentro da pasta `target/lighthouse-reports`.
+- A classe `Lighthouse` captura a URL atual do navegador
+- Se a propriedade `-Dlighthouse=true` estiver habilitada, o código dispara o Lighthouse CLI como processo externo
+- Relatórios são gerados em `target/lighthouse-reports`
+- O relatório JSON é validado automaticamente contra thresholds definidos no arquivo `lighthouse.yaml`
+- Se algum valor não atingir o mínimo ou ultrapassar o máximo permitido, o teste falha com `AssertionError`
 
 ---
 
-## ⚙️ Como executar o Lighthouse
+## ⚙️ Como executar
 
-Precisa trocar a variável do lighthouse para 'true' no arquivo testng.xml:
+No `testng.xml`:
 
-```Xml
+```xml
 <parameter name="lighthouse" value="true"/> <!-- true ou false -->
 ```
 
 ou no comando 'mvn'
 
 ```bash
-mvn clean test allure:report allure:serve -Denvironment=qa -Dbrowser=chrome -Dheadless=false -Dlighthouse=false
+mvn clean test -Denvironment=qa -Dbrowser=chrome -Dheadless=false -Dlighthouse=true
 ```
 
 ---
@@ -79,6 +81,26 @@ As pontuações são codificadas por cores:
 - [Total Blocking Time (TBT)](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time?hl=pt-br): mede o tempo total em que uma página fica bloqueada para responder à entrada do usuário, como cliques do mouse, toques na tela ou pressionamentos do teclado
 - [Cumulative Layout Shift (CLS)](https://web.dev/articles/cls?hl=pt-br): quantifica o quanto os elementos da página mudam de posição de forma inesperada enquanto o usuário interage ou a página carrega
 - [Speed Index (SI)](https://developer.chrome.com/docs/lighthouse/performance/speed-index?hl=pt-br): mede a rapidez com que o conteúdo é exibido visualmente durante o carregamento da página
+
+---
+
+## 📊 Thresholds configuráveis
+
+Os limites mínimos/máximos para validação são definidos no arquivo `lighthouse.yaml`:
+
+```yml
+lighthouse:
+  categories:
+    performance: 0.65
+    accessibility: 0.83
+    best-practices: 0.95
+    seo: 0.65
+  audits:
+    first-contentful-paint: 3700        # ms
+    largest-contentful-paint: 7600      # ms
+    cumulative-layout-shift: 0.1
+    total-blocking-time: 40             # ms
+```
 
 ---
 
