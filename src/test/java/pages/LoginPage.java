@@ -17,7 +17,7 @@ public class LoginPage extends LoginAttributes {
     /**
      * Acessa a aplicação utilizando a URL base definida para o ambiente.
      */
-    public void acessaAplicacao() {
+    public void acessarAplicacao() {
         String urlBase = DataYaml.getUrlBase();
         navigateTo(urlBase);
         percySnapshot("Página de Login");
